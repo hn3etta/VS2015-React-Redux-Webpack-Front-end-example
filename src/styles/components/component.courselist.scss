@@ -1,0 +1,65 @@
+﻿@import '../toolkits/core-imports.scss';
+
+.courses__headings {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.courses__rows {
+    border-bottom: 1px solid #ccc;
+}
+
+.title-1,
+.col-1 {
+    border-left: 1px solid #ccc;
+    text-align: center;
+}
+
+.title-2,
+.col-2 {
+    padding-left: 4px;
+}
+
+.title-1,
+.title-2,
+.title-3,
+.title-4,
+.title-5,
+.title-6,
+.title-7,
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7 {
+    font-family: 'Ek Mukta', sans-serif;
+    border-right: 1px solid #ccc;
+}
+
+.title-1,
+.title-3,
+.title-4,
+.title-5,
+.title-6,
+.title-7,
+.col-1,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7 {
+    @include justify-content(center);
+    text-align: center;
+}
+
+.course__edit,
+.course__delete {
+    padding: 9px;
+    cursor: pointer;
+}
+
+.course__delete {
+    width: 22px;
+}

@@ -1,0 +1,25 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.react-page {
+    padding: 30px 40px;
+    border: solid 3px $color-primary;
+    background-color: #fff;
+}
+
+.react-page__title {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: $font-size-xlrg;
+    color: $gray-darker;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.react-page__desc {
+    font-family: Arial, sans-serif;
+    font-size: $font-size-med;
+    padding-top: 20px;
+}
+
+.react-page__content-image {
+    width: 100%;
+}

@@ -1,0 +1,51 @@
+﻿// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-reset() {
+    display: inline-block;
+    margin-bottom: 0; // For input.btn
+    //font-weight: $btn-font-weight;
+    //text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+@mixin button() {
+    @include button-reset;
+    background-color: $button-primary;
+    color: $button-text;
+    border-radius: 6px;
+    padding: 15px 10px;
+}
+
+@mixin small-button(){
+    @include button-reset;
+    background-color: $button-primary;
+    color: $button-text;
+    border-radius: 6px;
+    padding: 10px 6px;
+}
+
+@mixin button-hover(){
+    background-color: $button-secondary;
+}
+
+@mixin nav-button() {
+    @include button-reset;
+    background-color: $color-light;
+    color: $color-primary;
+    border-radius: 6px;
+    padding: 15px 10px;
+}
+
+@mixin nav-button-hover(){
+    background-color: $button-secondary;
+}

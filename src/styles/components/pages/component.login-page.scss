@@ -1,0 +1,127 @@
+﻿// Login Page Component styles
+//
+// Login page css styles pertaining to padding, colors, fonts, etc..
+
+@import '../../toolkits/core-imports.scss';
+
+.login-page {
+    height: 84vh;
+    overflow: hidden;
+}
+
+.login-page__container {
+    padding: 30px 40px;
+    border: solid 3px #000;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.login-page__title,
+.login-page__username-input-label,
+.login-page__password-input-label {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: $gray-darker;
+}
+
+.login-page__title {
+    font-size: $font-size-lrg;    
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.login-page__desc {
+    font-family: Arial, sans-serif;
+    font-size: $font-size-xsml;
+    color: $gray-dark;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.login-page__username-input-cntr {
+
+}
+
+.login-page__username-input-label,
+.login-page__password-input-label {
+    display: block;
+    font-size: $font-size-sml;
+}
+
+.login-page__username-input,
+.login-page__password-input,
+.login-page__username-error,
+.login-page__password-error {
+    font-family: 'Ek Mukta', sans-serif;
+}
+
+.login-page__username-input,
+.login-page__password-input {
+    font-size: $font-size-sml;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-page__username-error,
+.login-page__password-error {
+    font-size: $font-size-sml;
+    color: $color-error;
+}
+
+.login-page__action-btn {
+    @include small-button;
+    font-size: $font-size-sml;
+}
+
+.login-page__action-btn:hover {
+    @include button-hover;
+}
+
+.login-page__cancel-btn {
+    @include small-button;
+}
+
+.login-page__cancel-btn:hover {
+    @include button-hover;
+}
+
+.login-page__error-cntr {
+    border-radius: 5px 5px 0 0;
+    background-color: $color-primary;
+    padding: 0 10px 0 15px;
+    margin-top: -25%;
+}
+
+.login-page__error-cntr--open {
+    margin-top: 0;
+}
+
+.login-page__error-msg {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: $color-light;
+    font-size: $font-size-sml;
+    font-weight: bold;
+}
+
+.login-page__error-close-icon {
+    @include close-icon-dark;
+}
+
+.animQtrSec {
+    @include transition(all 0.25s ease-in-out)
+}
+
+@include media-query(lrg-and-up) {
+
+    .login-page__container {
+        width: 31vw;
+    }
+
+    .login-page__error-msg {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

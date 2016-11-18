@@ -1,0 +1,41 @@
+﻿@import '../toolkits/core-imports.scss';
+
+.header {
+    position: relative;
+}
+
+.auth-bar {
+
+}
+
+.auth-link {
+    margin-left: 5px;
+}
+
+.nav-cntr {
+    position: relative;
+}
+
+.about-nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.nav-link {
+    
+}
+
+.busyNavLoader,
+.busyNavLoader--authd {
+    position: absolute;
+    margin-top: -26px;
+}
+
+.busyNavLoader {
+    margin-left: 95px;
+}
+
+.busyNavLoader--authd {
+    margin-left: 331px;
+}

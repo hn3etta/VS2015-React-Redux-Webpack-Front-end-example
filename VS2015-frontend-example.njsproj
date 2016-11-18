@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36a7344c-2a6c-47a8-b655-216237e96fdb}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>tools\srcServer.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>True</StartWebBrowser>
+    <LaunchUrl>http://127.0.0.1:3002</LaunchUrl>
+    <Environment>NODE_ENV=development</Environment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="bin\Microsoft.NodejsTools.WebRole.dll" />
+    <Content Include="package.json" />
+    <Compile Include="src\actions\redirectActions.js" />
+    <Compile Include="src\components\common\ImageClick.js" />
+    <Compile Include="src\components\course\ManageCoursePage.test.js" />
+    <Compile Include="src\components\course\CourseForm.test.js" />
+    <Compile Include="src\actions\actionTypes.js" />
+    <Compile Include="src\actions\ajaxStatusActions.js" />
+    <Compile Include="src\actions\animationActions.js" />
+    <Compile Include="src\actions\authorActions.js" />
+    <Compile Include="src\actions\authenticationActions.js" />
+    <Compile Include="src\actions\openCourseActions.js" />
+    <Compile Include="src\actions\courseFormActions.js" />
+    <Compile Include="src\actions\courseActions.js" />
+    <Compile Include="src\initModels\initialRedirectState.js" />
+    <Compile Include="src\reducers\redirectReducer.js" />
+    <Compile Include="src\utilities\uiDelays.js" />
+    <Compile Include="src\components\App.js" />
+    <Compile Include="src\components\authentication\LogoffPage.js" />
+    <Compile Include="src\components\authentication\LoginPage.js" />
+    <Compile Include="src\components\common\Header.js" />
+    <Compile Include="src\components\common\SideModal.js" />
+    <Compile Include="src\components\common\SelectInput.js" />
+    <Compile Include="src\components\common\TextInput.js" />
+    <Compile Include="src\components\open-course\OpenCoursesPage.js" />
+    <Compile Include="src\components\open-course\OpenClassTile.js" />
+    <Compile Include="src\components\course\CourseForm.js" />
+    <Compile Include="src\components\course\CourseList.js" />
+    <Compile Include="src\components\course\CourseListRow.js" />
+    <Compile Include="src\components\course\CoursesPage.js" />
+    <Compile Include="src\components\course\ManageCoursePage.js" />
+    <Compile Include="src\components\home\HomePage.js" />
+    <Compile Include="src\components\learn-about\WebpackPage.js" />
+    <Compile Include="src\components\learn-about\ReactRouterPage.js" />
+    <Compile Include="src\components\learn-about\ReduxPage.js" />
+    <Compile Include="src\components\learn-about\ReactPage.js" />
+    <Compile Include="src\containers\SystemErrorContainer.js" />
+    <Compile Include="src\initModels\initialCourseState.js" />
+    <Compile Include="src\error-messages\userFormErrors.js" />
+    <Compile Include="src\error-messages\courseFormErrors.js" />
+    <Compile Include="src\reducers\animationsReducer.js" />
+    <Compile Include="src\reducers\courseFormReducer.js" />
+    <Compile Include="src\reducers\ajaxStatusReducer.js" />
+    <Compile Include="src\reducers\authorsReducer.js" />
+    <Compile Include="src\reducers\authenticationReducer.js" />
+    <Compile Include="src\initModels\initialOpenCourseTimeoutObj.js" />
+    <Compile Include="src\reducers\openCoursesReducer.js" />
+    <Compile Include="src\reducers\coursesReducer.js" />
+    <Compile Include="src\reducers\index.js" />
+    <Compile Include="src\initModels\initialAnimationsState.js" />
+    <Compile Include="src\initModels\initialOpenCourseState.js" />
+    <Compile Include="src\initModels\initialCourseFormState.js" />
+    <Compile Include="src\initModels\initialCourseCntrState.js" />
+    <Compile Include="src\initModels\initialAuthorsState.js" />
+    <Compile Include="src\initModels\initialUserState.js" />
+    <Compile Include="src\initModels\initialCourseModalState.js" />
+    <Compile Include="src\initModels\initialAjaxState.js" />
+    <Compile Include="src\routes.js" />
+    <Compile Include="src\selectors\authorSelectors.js" />
+    <Compile Include="src\selectors\authorSelectors.test.js" />
+    <Compile Include="src\store\configureStore.js" />
+    <Compile Include="src\store\configureStore.prod.js" />
+    <Compile Include="src\store\configureStore.dev.js" />
+    <Compile Include="src\utilities\apiUtilities.js" />
+    <Compile Include="src\utilities\cssUtilities.js" />
+    <Compile Include="src\utilities\objectArraysMatch.js" />
+    <Compile Include="src\utilities\objectUtilities.js" />
+    <Compile Include="src\utilities\reducerUtilities.js" />
+    <Compile Include="tools\build.js" />
+    <Compile Include="tools\buildHtml.js" />
+    <Compile Include="tools\distServer.js" />
+    <Compile Include="webpack.config.js" />
+    <Content Include="src\images\add-icon.png" />
+    <Content Include="src\images\attendee.png" />
+    <Content Include="src\images\attendee_empty.png" />
+    <Content Include="src\images\edit-icon.png" />
+    <Content Include="src\images\max-attendee.png" />
+    <Content Include="src\images\react-flowchart.png" />
+    <Content Include="src\images\react-router.png" />
+    <Content Include="src\images\react.png" />
+    <Content Include="src\images\redux-flowchart.png" />
+    <Content Include="src\images\redux.png" />
+    <Content Include="src\images\subtract-icon.png" />
+    <Content Include="src\images\trash-can.png" />
+    <Content Include="src\images\webpack-flowchart.png" />
+    <Content Include="src\images\webpack.png" />
+    <Content Include="src\index.html" />
+    <Compile Include="src\index.js" />
+    <Compile Include="tools\srcServer.js" />
+    <Compile Include="tools\startMessage.js" />
+    <Compile Include="tools\testSetup.js" />
+    <Content Include="src\styles\components\common\component.card-block.scss" />
+    <Content Include="src\styles\components\common\component.side-modal.scss" />
+    <Content Include="src\styles\components\component.courselist.scss" />
+    <Content Include="src\styles\components\component.app.scss" />
+    <Content Include="src\styles\components\containers\component.system-error-container.scss" />
+    <Content Include="src\styles\components\pages\component.open-courses-page.scss" />
+    <Content Include="src\styles\components\pages\component.logoff-page.scss" />
+    <Content Include="src\styles\components\pages\component.login-page.scss" />
+    <Content Include="src\styles\components\pages\component.webpack-page.scss" />
+    <Content Include="src\styles\components\pages\component.react-router-page.scss" />
+    <Content Include="src\styles\components\pages\component.redux-page.scss" />
+    <Content Include="src\styles\components\pages\component.react-page.scss" />
+    <Content Include="src\styles\components\pages\component.manage-course-page.scss" />
+    <Content Include="src\styles\components\pages\component.course-page.scss" />
+    <Content Include="src\styles\components\pages\component.home-page.scss" />
+    <Content Include="src\styles\components\component.header.scss" />
+    <Content Include="src\styles\core\settings.colors.scss" />
+    <Content Include="src\styles\core\settings.inputs.scss" />
+    <Content Include="src\styles\core\tools.icons.scss" />
+    <Content Include="src\styles\core\tools.buttons.scss" />
+    <Content Include="src\styles\objects\common\object.card-block.scss" />
+    <Content Include="src\styles\objects\common\object.side-modal.scss" />
+    <Content Include="src\styles\objects\containers\object.system-error-container.scss" />
+    <Content Include="src\styles\objects\object.app.scss" />
+    <Content Include="src\styles\objects\pages\object.open-courses-page.scss" />
+    <Content Include="src\styles\objects\pages\object.logoff-page.scss" />
+    <Content Include="src\styles\objects\pages\object.login-page.scss" />
+    <Content Include="src\styles\objects\pages\object.webpack-page.scss" />
+    <Content Include="src\styles\objects\pages\object.react-router-page.scss" />
+    <Content Include="src\styles\objects\pages\object.redux-page.scss" />
+    <Content Include="src\styles\objects\pages\object.react-page.scss" />
+    <Content Include="src\styles\objects\pages\object.manage-course-page.scss" />
+    <Content Include="src\styles\objects\pages\object.course-page.scss" />
+    <Content Include="src\styles\objects\object.courselist.scss" />
+    <Content Include="src\styles\objects\pages\object.home-page.scss" />
+    <Content Include="src\styles\objects\object.header.scss" />
+    <Content Include="src\styles\core\settings.breakpoints.scss" />
+    <Content Include="src\styles\core\settings.spacing.scss" />
+    <Content Include="src\styles\core\settings.typography.scss" />
+    <Content Include="src\styles\styles.css" />
+    <Content Include="src\styles\core\tools.animations.scss" />
+    <Content Include="src\styles\core\tools.media-query.scss" />
+    <Content Include="src\styles\core\tools.flexbox.scss" />
+    <Content Include="src\styles\toolkits\core-imports.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="src\selectors\" />
+    <Folder Include="src\components\learn-about\" />
+    <Folder Include="src\components\authentication\" />
+    <Folder Include="src\components\open-course\" />
+    <Folder Include="src\images\" />
+    <Folder Include="src" />
+    <Folder Include="src\components\" />
+    <Folder Include="src\components\home\" />
+    <Folder Include="src\components\common\" />
+    <Folder Include="src\components\course\" />
+    <Folder Include="src\actions\" />
+    <Folder Include="src\error-messages\" />
+    <Folder Include="src\containers\" />
+    <Folder Include="src\initModels\" />
+    <Folder Include="src\styles\components\containers\" />
+    <Folder Include="src\styles\objects\containers\" />
+    <Folder Include="src\utilities\" />
+    <Folder Include="src\store\" />
+    <Folder Include="src\reducers\" />
+    <Folder Include="src\styles\" />
+    <Folder Include="src\styles\components\common\" />
+    <Folder Include="src\styles\components\pages\" />
+    <Folder Include="src\styles\core\" />
+    <Folder Include="src\styles\components\" />
+    <Folder Include="src\styles\objects\common\" />
+    <Folder Include="src\styles\objects\pages\" />
+    <Folder Include="src\styles\toolkits\" />
+    <Folder Include="src\styles\objects\" />
+    <Folder Include="tools" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://127.0.0.1:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://127.0.0.1:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

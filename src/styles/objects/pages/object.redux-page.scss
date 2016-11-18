@@ -1,0 +1,11 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.redux-page {
+    max-width: 80%;
+    margin: 40px auto 50px;
+}
+
+.redux-page__card-block-cntr {
+    @include display-flex;
+    margin-bottom: 40px;
+}

@@ -1,0 +1,32 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.sys-err-cntr {
+    width: 100%;
+    z-index: 3;
+    opacity: 0;
+}
+
+.sys-err-cntr--visible {
+    opacity: 1;
+}
+
+.sticky-inner-wrapper {
+    background-color: $color-error;
+}
+
+.sys-err-cntr__err-msg {
+    font-family: 'Mukta', sans-serif;
+    font-size: $font-size-sml;
+    color: $color-light;
+    margin: 0px;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.sys-err-cntr__err-dismiss__icon {
+    @include close-icon-light;
+}
+
+.animQtrSec {
+    @include transition(all 0.25s ease-in-out)
+}

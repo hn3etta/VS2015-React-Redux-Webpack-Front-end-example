@@ -1,0 +1,2 @@
+D:\SourceCode\External\pluralsight-redux-starter\bin\Microsoft.NodejsTools.WebRole.dll
+D:\SourceCode\External\pluralsight-redux-starter\obj\Debug\Pluralsight-Redux.njsprojResolveAssemblyReference.cache

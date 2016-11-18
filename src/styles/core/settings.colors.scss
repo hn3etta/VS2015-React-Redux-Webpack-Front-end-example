@@ -1,0 +1,44 @@
+﻿// Colors
+//
+// Site base colors
+
+$gray-base:              #000 !default;
+$gray-darker:            #4c4c4c !default;
+$gray-dark:              #666666 !default;
+$gray:                   #b2b2b2 !default;
+$gray-light:             #d8d8d8 !default; 
+
+
+// Scaffolding
+//
+// Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #fff !default;
+//** Global text color on `<body>`.
+$text-color:            #000 !default;
+
+//Colors
+$color-primary:         #036ab7;
+$color-secondary:       #E88A0C;
+$color-tertiary:        #000000;
+$color-light:           #FFFFFF;
+$color-dark:            #000000;
+$color-error:           #8C0000;
+
+
+//** Global textual link color.
+$link-color:            $gray-dark !default;
+$link-active-color:     orange !default;
+
+
+//** Link hover decoration.
+$link-hover-decoration: underline !default;
+
+//** Button colors
+$button-primary:        #0077EB;
+$button-secondary:      #0054A6;
+$button-text:           #fff;
+
+//** Text muted color
+$text-muted:                  $gray !default;

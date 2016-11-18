@@ -1,0 +1,25 @@
+﻿// Media query breakpoints
+//
+// Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+
+// Small (mostly phones)
+$screen-sml:                 320px !default;
+$screen-sml-min:             $screen-sml !default;
+
+// Medium screen / desktop
+$screen-med:                 640px !default;
+$screen-med-min:             $screen-med !default;
+
+// Large screen / desktop
+$screen-lrg:                 1024px !default;
+$screen-lrg-min:             $screen-lrg !default;
+
+// Extra Large screen / desktop
+$screen-xlrg:                1400px !default;
+$screen-xlrg-min:            $screen-xlrg !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-sml-max:             ($screen-med-min - 1) !default;
+$screen-med-max:             ($screen-lrg-min - 1) !default;
+$screen-lrg-max:             ($screen-xlrg-min - 1) !default;

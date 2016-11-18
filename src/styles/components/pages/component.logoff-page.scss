@@ -1,0 +1,31 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.logoff-page {
+    height: 84vh;
+}
+
+.logoff-page__container {
+    padding: 30px 40px;
+    border: solid 3px $color-primary;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.logoff-page__title {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: $font-size-lrg;
+    color: $gray-darker;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.logoff-page__desc {
+    font-family: Arial, sans-serif;
+    font-size: $font-size-xsml;
+    color: $gray-dark;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+

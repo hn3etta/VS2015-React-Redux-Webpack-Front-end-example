@@ -1,0 +1,61 @@
+﻿// Login Page Object styles
+//
+// Login page css styles pertaining to element positioning
+
+@import '../../toolkits/core-imports.scss';
+
+.login-page {
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+.login-page__container {
+    position: relative;
+}
+
+.login-page__title {
+    margin-top: 0;
+} 
+
+.login-page__username-input-cntr {
+    margin-bottom: 20px;
+}
+
+.login-page__username-input,
+.login-page__password-input {
+    margin-top: 10px;
+}
+
+
+.login-page__button-cntr {
+    position: relative;
+}
+
+.login-page__action-btn {
+    position: absolute;
+    right: 0;
+}
+
+.login-page__error-cntr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+.login-page__error-close {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+}
+
+@include media-query(lrg-and-up) {
+
+    .login-page__button-cntr {
+        margin-top: 50px;
+    }
+}

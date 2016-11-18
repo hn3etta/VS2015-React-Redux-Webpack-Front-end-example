@@ -1,0 +1,48 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.course-page {
+    background-color: #fff;
+    min-height: 830px;
+}
+
+.course-page__main-cntr {
+    height: auto;
+}
+
+.course-page__sidebar {
+    width: 10.5%;
+    padding: 15px 10px 0;
+    background-color: $gray;
+}
+
+.course-page__title {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: $font-size-lrg;
+    color: $gray-darker;
+}
+
+.course-page__add-btn {
+    @include small-button;
+    font-size: $font-size-sml;
+}
+
+.course-page__add-btn:hover {
+    @include button-hover;
+}
+
+
+.btn--busy {
+    padding-right: 23px;
+}
+
+.busyAnimation {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: 0.25rem solid#919191;
+    border-top-color: white;
+    -webkit-animation: spin 1s infinite linear;
+            animation: spin 1s infinite linear;
+}
+
+@include keyframe-spin-360

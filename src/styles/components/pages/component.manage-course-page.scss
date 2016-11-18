@@ -1,0 +1,91 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.manage-course-form__title,
+.manage-course-form__title-label,
+.manage-course-form__author-label,
+.manage-course-form__category-label,
+.manage-course-form__length-label,
+.manage-course-form__watchHref-label {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.manage-course-form__title {
+    font-size: $font-size-lrg;
+    border-bottom: 1px solid #ccc;
+}
+
+.manage-course-form {
+    padding-bottom: 15px;
+}
+
+.manage-course-form__title-label,
+.manage-course-form__author-label,
+.manage-course-form__category-label,
+.manage-course-form__length-label,
+.manage-course-form__watchHref-label {
+    display: block;
+    font-size: $font-size-sml;
+}
+
+.manage-course-form__title-input,
+.manage-course-form__author-select,
+.manage-course-form__category-input,
+.manage-course-form__length-input,
+.manage-course-form__watchHref-input,
+.manage-course-form__title-error,
+.manage-course-form__author-error,
+.manage-course-form__category-error,
+.manage-course-form__length-error,
+.manage-course-form__watchHref-error {
+    font-family: 'Ek Mukta', sans-serif;
+    font-size: $font-size-sml;
+}
+
+.manage-course-form__title-input,
+.manage-course-form__author-select,
+.manage-course-form__category-input,
+.manage-course-form__length-input,
+.manage-course-form__watchHref-input {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.manage-course-form__title-error,
+.manage-course-form__author-error,
+.manage-course-form__category-error,
+.manage-course-form__length-error,
+.manage-course-form__watchHref-error {
+    color: $color-error;
+}
+
+.manage-course-form__title-input,
+.manage-course-form__watchHref-input {
+    width: 30vw;
+}
+
+.manage-course-form__action-btn {
+    position: absolute;
+    right: 0;
+    @include small-button;
+    font-size: $font-size-sml;
+}
+
+.manage-course-form__action-btn:hover {
+    @include button-hover;
+}
+
+.manage-course-form__cancel-btn {
+    @include small-button;
+}
+
+.manage-course-form__cancel-btn:hover {
+    @include button-hover;
+}
+
+@include media-query(lrg-and-up) {
+
+    .manage-course-form__button-cntr {
+        width: 31vw;
+    }
+
+}
