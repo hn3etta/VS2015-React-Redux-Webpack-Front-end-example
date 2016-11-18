@@ -76,9 +76,12 @@ Per the instructions, login with a Username of "test@test.com" and a Password of
 Now that you successfully logged in, you should see "Courses" and "Open Courses" next to the "Home" navigational element.  Go ahead and navigate to "Courses".
 Here you can add, edit and delete courses.  This is pretty much the same functionality from the PluralSight course, but I changed up the look and the React Component organization.  Also added animations (GreenSock.js) for the sidebar slide in.
 
+Try this out.  Reload the webpage while you are on the "Courses" page.  Notice that everything loaded and so did your authenticated session?  Your user authenticated store data was persisted to your browser's local storage via [Redux Persist](https://github.com/rt2zz/redux-persist).
+If you logged out and then manually went to the /courses page, you will notice that you are redirected to the login page and if you logged in successfully you would be returned to the Courses page.
+
 >**Open Courses**
 
-Navigate to the "Open Courses" view to take this for a spin.  Building this view was the funnest part of this example.  This example really shows the power, speed and simplicity of React and Redux using Action Thunks and Immutable.js for synchronous and asynchronous data calls.
+Please make sure you are logged in again and Navigate to the "Open Courses" view to take this for a spin.  Building this view was the funnest part of this example.  This example really shows the power, speed and simplicity of React and Redux using Action Thunks and Immutable.js for synchronous and asynchronous data calls.
 The purpose of this page was to simulate a handfull of courses that would display the number of students signed up for a certain course.  The data supplied to the course cards are just random numbers.
 
 Click the green plus sign on each of the course cards to see synchronous and asynchronous data calls in action.  The clicking of the green plus triggers a synchronous action and the timeout execution performs an asynchronous call to the .NET Core WebAPI.
