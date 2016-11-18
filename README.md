@@ -3,6 +3,10 @@ Visual Studio 2015 React Redux Webpack Front-end example
 
 This example site was mostly built following Cory House's excellent Pluralsight course "[Building Applications with React and Redux in ES6](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)".  I modified things here and there to fit into Visual Studio 2015 (update 3) and to prove out multiple other technologies.
 
+If you are completely new to React then I advise you watch [Ryan Florence's React.js course out on FrontEnd Masters](https://frontendmasters.com/courses/react/).
+
+If you are new to Redux and Webpack please watch [Cory's course first](https://app.pluralsight.com/library/courses/react-redux-react-router-es6).
+
 ##Technologies used in this starter:
 * [react](https://github.com/facebook/react)
 * [redux](https://github.com/rackt/redux)
@@ -47,7 +51,7 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 Then visit `localhost:3000` in your browser if your browser didn't already fire up.
 
 
-### Test Drive the Demo
+### Test Drive the Example Site
 
 >**Go ahead and click around on the public content**
 
@@ -61,6 +65,10 @@ The site styling is very basic and was put together using SASS and following the
 Now click the "Login" link on the top right.
 The login box should animate (GreenSock.js) into the view.  The login box has validation and an error display that slides down at the top of the login container (try entering an invalid username or password).  Animations for the error display are good old CSS Animations using setTimeout.
 
+Any errors that occur outside of the current component (background asynchronous calls) are bubbled up to a SystemErrorContainer.  This container uses [Yahoo's react-sticky node](https://github.com/yahoo/react-stickynode) incase the user was halfway down the page when the error occurred.
+
+On the .NET Core side of things, I configured CORS and JWT authentication.
+
 Per the instructions, login with a Username of "test@test.com" and a Password of "Password".
 
 >**Courses**
@@ -70,10 +78,20 @@ Here you can add, edit and delete courses.  This is pretty much the same functio
 
 >**Open Courses**
 
-Navigate to the "Open Courses" view to take this for a spin.  Building this view was the funnest part of this example.  This example really shows the power, speed and simplicity of React and Redux using Immutable.js for synchronous and asynchronous data calls.
-The purpose of this page was to simulate a handfull of courses that would display the number of students signed up for a certain course.
+Navigate to the "Open Courses" view to take this for a spin.  Building this view was the funnest part of this example.  This example really shows the power, speed and simplicity of React and Redux using Action Thunks and Immutable.js for synchronous and asynchronous data calls.
+The purpose of this page was to simulate a handfull of courses that would display the number of students signed up for a certain course.  The data supplied to the course cards are just random numbers.
 
 Click the green plus sign on each of the course cards to see synchronous and asynchronous data calls in action.  The clicking of the green plus triggers a synchronous action and the timeout execution performs an asynchronous call to the .NET Core WebAPI.
-I had to throw a "Task.Delay" of one second in the .NET WebAPI so you could see the "Updating" message overlay to the course card.  The ajax calls were so fast that the "Updating" message barely showed.
+I had to throw a "Task.Delay" of one second in the .NET WebAPI so you could see the "Updating" message overlay the course card.  The ajax calls were so fast that the "Updating" message barely showed.
 
 ### Project Organization
+
+I really enjoyed how Cory House organized all of the components, actions, reducers, selectors and stores.  I followed his lead.  All of the SASS (SCSS) file are located in the /src/styles directory.
+
+Just like the course, everything starts at the index.js file in the /src directory.
+
+### To Dos
+
+I didn't have time to finish the following:
+
+01. Complete all of the unit tests for the components
