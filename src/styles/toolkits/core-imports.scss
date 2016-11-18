@@ -1,0 +1,33 @@
+﻿/**
+ * CONTENTS
+ *
+ * TOOL KIT
+ * Core...................Settings and tools from core (variables and mixins).
+ *
+ * SETTINGS (variables)
+ * Colors.................Brand colors
+ * Typography.............Font sizes and line heights
+ *                      
+ * TOOLS                
+ * Animations.............Helpers for CSS Animations
+ * Buttons................Helpers for styling buttons
+ *                     
+ */
+
+/**
+ * #SETTINGS
+ */
+@import "../core/settings.breakpoints.scss";
+@import "../core/settings.colors.scss";
+@import "../core/settings.spacing.scss";
+@import "../core/settings.typography.scss";
+@import "../core/settings.inputs.scss";
+
+/**
+ * #TOOLS
+ */
+@import "../core/tools.animations.scss";
+@import "../core/tools.buttons.scss";
+@import "../core/tools.flexbox.scss";
+@import "../core/tools.icons.scss";
+@import "../core/tools.media-query.scss";

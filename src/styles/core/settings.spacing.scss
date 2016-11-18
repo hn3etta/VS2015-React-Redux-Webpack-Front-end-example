@@ -1,0 +1,10 @@
+﻿// Spacing
+//
+// Define common spacing system
+
+//spacing system
+$space-base:        1vw !default;
+$space-sml:         $space-base;
+$space-med:         $space-base * 1.5;
+$space-lrg:         $space-base * 1.75;
+$space-xlrg:        $space-base * 2;

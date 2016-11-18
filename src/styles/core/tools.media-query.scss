@@ -1,0 +1,47 @@
+﻿// Media Queries
+//
+// Helpers for using pre-defined media queries
+
+@mixin media-query($media-query){
+
+    //sml media queries
+    @if $media-query == sml{
+        @media (max-width: $screen-sml-max) { @content; }
+    }
+
+    //med media queries
+    @if $media-query == med{
+        @media (min-width: $screen-med-min) and (max-width: $screen-med-max) { @content; }
+    }
+
+    @if $media-query == med-and-down{
+        @media (max-width: $screen-med-max) { @content; }
+    }
+
+    @if $media-query == med-and-up{
+        @media (min-width: $screen-med-min) { @content; }
+    }
+
+    //lrg media queries
+    @if $media-query == lrg{
+        @media (min-width: $screen-lrg-min) and (max-width: $screen-lrg-max) { @content; }
+    }
+
+    @if $media-query == lrg-and-down{
+        @media (max-width: $screen-lrg-max) { @content; }
+    }
+
+    @if $media-query == lrg-and-up{
+        @media (min-width: $screen-lrg-min) { @content; }
+    }
+
+    //xlrg media queries
+    @if $media-query == xlrg{
+        @media (min-width: $screen-xlrg-min) { @content; }
+    }
+
+    @if $media-query == xlrg-and-down{
+        @media (max-width: $screen-xlrg-max) { @content; }
+    }
+
+}

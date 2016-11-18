@@ -1,0 +1,18 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.react-router-page {
+    max-width: 80%;
+    margin: 40px auto 50px;
+}
+
+
+.react-router-page__card-block-cntr {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    margin-bottom: 40px;
+}
+
+.react-router-page__card-block-cntr > .card-block {
+    min-width: 300px;
+    max-width: 300px;
+}

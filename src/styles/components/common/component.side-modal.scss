@@ -1,0 +1,12 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.side-modal {
+    padding: 0 10px 10px 38px;
+    background-color: $gray-light;
+    transform: translateX(-112%);
+
+}
+
+.side-modal--open {
+    transform: translateX(0);
+}

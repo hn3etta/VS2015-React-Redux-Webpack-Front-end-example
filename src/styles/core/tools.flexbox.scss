@@ -1,0 +1,77 @@
+﻿// Flexbox
+//
+// Vendor support for flexbox to avoid cross browser quirks.
+
+@mixin display-flex(){
+    display: -webkit-box;                       // OLD - iOS 6-, Safari 3.1-6
+    display: -moz-box;                          // OLD - Firefox 19- (doesn't work very well)
+    display: -ms-flexbox;                       // TWEENER - IE 10
+    display: -webkit-flex;                      // OLD - Chrome
+    display: flex;                              // Current module version 
+}
+
+@mixin flex($properties){
+    -webkit-box-flex: $properties;              // OLD - iOS 6-, Safari 3.1-
+       -moz-box-flex: $properties;              // OLD - Firefox 19
+            -ms-flex: $properties;              // TWEENER - IE 10
+        -webkit-flex: $properties;              // OLD - Chrome
+                flex: $properties;              // Current module version 
+}
+
+@mixin flex-direction($direction){
+        -ms-flex-direction: $direction;         //IE10
+    -webkit-flex-direction: $direction;         //Safari
+            flex-direction: $direction;         // Current module
+}
+
+@mixin flex-wrap($wrap){
+        -ms-flex-wrap: $wrap;         //IE10
+    -webkit-flex-wrap: $wrap;         //Safari
+            flex-wrap: $wrap;         // Current module
+}
+
+@mixin flex-grow($grow){
+        -ms-flex-grow: $grow;         //IE11
+    -webkit-flex-grow: $grow;         //Safari
+            flex-grow: $grow;         // Current module
+
+}
+
+@mixin flex-flow($direction-wrap...){
+        -ms-flex-flow: $direction-wrap;         //IE10
+    -webkit-flex-flow: $direction-wrap;         //Safari
+            flex-flow: $direction-wrap;
+}
+
+@mixin justify-content($alignment){
+              -ms-flex-pack: $alignment;        //IE10
+    -webkit-justify-content: $alignment;        //Safari
+            justify-content: $alignment;        // Current module
+}
+
+@mixin order($position){
+    -webkit-box-ordinal-group: $position;       // OLD - iOS 6-, Safari 3.1-6
+       -moz-box-ordinal-group: $position;       // OLD - Firefox 19
+               -ms-flex-order: $position;       // TWEENER - IE 10
+                -webkit-order: $position;       // OLD - Chrome
+                        order: $position;       // Current module version 
+}
+
+@mixin align-content($alignment) {
+    -webkit-align-content: $alignment;          //OLD - iOS 6-, Safari 3.1-6
+        -ms-align-content: $alignment;          //IE10
+            align-content: $alignment;          // Current module version 
+}
+
+@mixin align-items($alignment) {
+         -webkit-flex-align: $alignment;          //OLD - iOS 6-, Safari 3.1-6
+             -ms-flex-align: $alignment;          //IE10
+                align-items: $alignment;          // Current module version 
+}
+@mixin align-self($alignment) {
+         -webkit-align-self: $alignment;        //OLD - iOS 6-, Safari 3.1-6
+        -ms-flex-item-align: $alignment;
+    -webkit-flex-item-align: $alignment;
+        //flex-item-align: $alignment;          //IE10
+                align-self: $alignment;         // Current module version
+}

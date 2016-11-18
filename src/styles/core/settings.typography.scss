@@ -1,0 +1,19 @@
+﻿// Typography
+//
+// Anything to do with fonts in regards to sizing and spacing
+
+$font-size-base:        1.25vw !default;
+$font-size-xxsml:       0.9vw !default;
+$font-size-xsml:        1vw !default;
+$font-size-sml:         $font-size-base !default;
+$font-size-med:         ($font-size-base * 1.45) !default;
+$font-size-lrg:         ($font-size-base * 2) !default;
+$font-size-xlrg:        ($font-size-base * 3) !default;
+
+//** Line heights
+$line-height-xxsml:     0.9vw !default;
+$line-height-xsml:      1vw !default;
+$line-height-sml:       ($font-size-sml * 1.5) !default;
+$line-height-med:       ($font-size-med * 1.5) !default;
+$line-height-lrg:       ($font-size-lrg * 1.5) !default;
+$line-height-xlrg:      ($font-size-xlrg * 1.5) !default;
