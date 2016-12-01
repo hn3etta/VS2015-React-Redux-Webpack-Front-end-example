@@ -1,11 +1,18 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
-.side-modal {
+.side-modal-left,
+.side-modal-right {
     position: absolute;
     top: 0;
-    left: 11%;
-    right: 0;
     bottom: 0;
     z-index: 1;
 }
 
+.side-modal-left {
+    left: 11%;
+    right: 0;
+}
+
+.side-modal-right {
+    right: 0;
+}

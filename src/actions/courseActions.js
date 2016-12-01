@@ -43,6 +43,14 @@ export function deleteCourseError(immtblCoursesCntr) {
     return { type: types.DELETE_COURSE_ERROR, immtblCoursesCntr };
 }
 
+export function updateCourseIsOpen(courseId) {
+    return { type: types.UPDATE_COURSE_IS_OPEN, courseId };
+}
+
+export function updateCourseIsClosed(courseId) {
+    return { type: types.UPDATE_COURSE_IS_CLOSED, courseId };
+}
+
 /* Action Thunks */
 export function loadCourses() {
     return function (dispatch, getState) {
@@ -100,28 +108,28 @@ export function addCourse(course) {
             },
             body: JSON.stringify(course)
         }).then(checkHttpStatus)
-            .then(parseJSON)
-            .then(response => {
-                // Get the latest couresCntr from the store
-                let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
-                // New immutable object updating the existing course in immtblCoursesCntr 
-                // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
-                // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
-                dispatch(createCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                    mObj.set("allCourses", immtblCoursesCntr.get("allCourses").push(Map(response)))
-                        .set("statusText", "")
-                        .set("ajaxStart", ajaxStartDT)
-                        .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                })));
-            })
-            .catch(error => {
-                // New immutable object setting statusText and ajaxEnd
-                dispatch(createCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                    mObj.set("statusText", "Add Course Error: " + error.message)
-                        .set("ajaxStart", ajaxStartDT)
-                        .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                })));
-            });
+          .then(parseJSON)
+          .then(response => {
+              // Get the latest couresCntr from the store
+              let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
+              // New immutable object updating the existing course in immtblCoursesCntr 
+              // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
+              // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
+              dispatch(createCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
+                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").push(Map(response)))
+                      .set("statusText", "")
+                      .set("ajaxStart", ajaxStartDT)
+                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
+              })));
+          })
+          .catch(error => {
+              // New immutable object setting statusText and ajaxEnd
+              dispatch(createCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
+                  mObj.set("statusText", "Add Course Error: " + error.message)
+                      .set("ajaxStart", ajaxStartDT)
+                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
+              })));
+          });
     };
 }
 
@@ -153,7 +161,7 @@ export function saveCourse(course) {
               dispatch(updateCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
                   mObj.set("allCourses", immtblCoursesCntr.get("allCourses").map( c => {
                               if(c.get("id") == course.id){ 
-                                  return c.merge(Map(course));
+                                  return c.merge(Map(response));
                               }
                               return c;
                           }))
@@ -197,12 +205,7 @@ export function deleteCourse(courseId) {
               // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
               // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
               dispatch(deleteCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").filter(c => {
-                      if (c.get("id") == courseId) {
-                          return false;
-                      }
-                      return true;
-                  }))
+                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").filter(c => c.get("id") != courseId))
                       .set("statusText", "")
                       .set("ajaxStart", ajaxStartDT)
                       .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));

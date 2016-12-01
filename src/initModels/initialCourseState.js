@@ -4,5 +4,6 @@
     title: '',
     authorId: '',
     length: '',
-    category: ''
+    category: '',
+    isOpen: false
 };

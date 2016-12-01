@@ -123,7 +123,7 @@ export class ManageCoursePage extends React.Component {
         event.preventDefault();
 
         // If another UI api call in progress then skip
-        if (this.isValidForm() && !this.state.loading) {
+        if (this.isValidForm() && !this.props.loading) {
 
             // Add Course
             if (this.state.addMode) {
@@ -145,11 +145,7 @@ export class ManageCoursePage extends React.Component {
     }
 
     closeFormScren() {
-        // Mutate the modalData object for Action Dispatch
-        this.props.courseFormActions.closeScreen(this.props.modalData.withMutations(mObj => {
-            mObj.set("courseFormModalOpen", false)
-                .set("courseId", "");
-        }));
+        this.props.courseFormActions.closeCourseFormScreen();
     }
 
     isValidForm() {
@@ -171,14 +167,11 @@ export class ManageCoursePage extends React.Component {
     cancelCourseScreen(event) {
         event.preventDefault();
 
-        // Mutate the modalData object for Action Dispatch
-        this.props.courseFormActions.closeScreen(this.props.modalData.withMutations(mObj => {
-            mObj.set("courseFormModalOpen", false)
-                .set("courseId", "");
-        }));
+        this.closeFormScren();
 
         this.setState({ errors: {} });
     }
+
 
     render() {
         const {authors} = this.props; /* Destructure objects for easier rendering code (readability) */
@@ -189,9 +182,9 @@ export class ManageCoursePage extends React.Component {
                 onAction={this.courseAction}
                 onCancel={this.cancelCourseScreen}
                 course={this.state.course}
-                loading={this.state.loading}
+                loading={this.props.loading}
                 addMode={this.state.addMode}
-                errors={this.state.errors}/>
+                errors={this.state.errors} />
         );
     }
 }

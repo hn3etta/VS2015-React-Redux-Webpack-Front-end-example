@@ -3,7 +3,7 @@ let React = require('react');
 let PropTypes = React.PropTypes;
 
 
-const TextInput = ({type, name, label, focus = false, onChange, onKeyPress, placeholder, value, error, containerCssClass, labelCssClass, inputCssClass, errorCssClass}) => {
+const TextInput = ({type, name, label, focus = false, onChange, onKeyPress, placeholder, value, error, disabled = false, containerCssClass, labelCssClass, inputCssClass, errorCssClass}) => {
     return (
         <div className={containerCssClass}>
             <label htmlFor={name} className={labelCssClass}>{label}</label>
@@ -15,7 +15,8 @@ const TextInput = ({type, name, label, focus = false, onChange, onKeyPress, plac
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                onKeyPress={onKeyPress} />
+                onKeyPress={onKeyPress}
+                disabled={disabled ? "disabled" : ""} />
             {error && <div className={errorCssClass}>{error}</div>}
         </div>
     );
@@ -31,6 +32,7 @@ TextInput.propTypes = {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     error: PropTypes.string,
+    disabled: PropTypes.bool,
     containerCssClass: PropTypes.string.isRequired,
     labelCssClass: PropTypes.string.isRequired,
     inputCssClass: PropTypes.string.isRequired,
