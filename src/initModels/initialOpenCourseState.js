@@ -1,16 +1,6 @@
-﻿/* Use "require" for non ES6 Modules */
-let Map = require('immutable').Map;
-
-export default {
-    openCourseCntr: Map({
-        openCourse: undefined,
-        courseName: '',
-        refreshSeconds: 0,
-        statusText: '',
-        ajaxStart: undefined,
-        ajaxEnd: undefined,
-        animateChart: false,
-        updating: false,
-        updatedMsg: undefined
-    })
+﻿export default {
+    id: -1,
+    courseId: -1,
+    attendees: 0,
+    maxAttendees: 1
 };

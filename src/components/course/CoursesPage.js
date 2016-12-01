@@ -6,16 +6,17 @@ import {withRouter} from 'react-router';
 
 /* Use "require" for non ES6 Modules */
 let React = require('react');
-let ReactDOM = require('react-dom');
 let PropTypes = React.PropTypes;
 let connect = require('react-redux').connect;
-let ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 let ImmutablePropTypes = require('react-immutable-proptypes');
 
 //Project Components
 import CourseList from './CourseList';
 import SideModal from '../common/SideModal';
 import ManageCoursePage from './ManageCoursePage'; //eslint-disable-line import/no-named-as-default
+import OpenCourseForm from '../open-course/OpenCourseForm';
+// Action creators
+import * as openCourseFormActions from '../../actions/openCourseFormActions';
 // Selectors
 import {formatAuthorsForDisplay} from '../../selectors/authorSelectors';
 // Utilities/Settings
@@ -29,17 +30,16 @@ class CoursesPage extends React.Component {
     constructor(props, context){
         super(props, context);
 
+        this.state = {
+            openCourseFound: false,
+            errors: {}
+        };
+
         /* Set context for DOM Event functions */
         this.addCourseClick = this.addCourseClick.bind(this);
-        this.toggleModalState = this.toggleModalState.bind(this);
         this.editCourse = this.editCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
-    }
-
-    componentWillMount() {
-    }
-
-    componentDidMount() {
+        this.showOpenCourseFormModal = this.showOpenCourseFormModal.bind(this);
     }
 
     /* React lifecycle function - exeuctes when props or state changes detected.  Here you can determine if the component needs to re-render or not */
@@ -53,11 +53,19 @@ class CoursesPage extends React.Component {
             return true;
         }
 
-        if (!nextProps.modalData.equals(this.props.modalData)) {
+        if (!nextProps.courseModal.equals(this.props.courseModal)) {
             return true;
         }
         
+        if (!nextProps.openCourseModal.equals(this.props.openCourseModal)) {
+            return true;
+        }
+
         if (!nextProps.immtblUsr.equals(this.props.immtblUsr)) {
+            return true;
+        }
+
+        if (nextProps.loading != this.props.loading) {
             return true;
         }
 
@@ -68,9 +76,9 @@ class CoursesPage extends React.Component {
         return false;
     }
 
-    componentWillUpdate() {
+    componentWillUpdate(nextProps) {
         // Check if user is authenticated
-        if (this.props.immtblUsr.get("isAuthenticated") == false) {
+        if (nextProps.immtblUsr.get("isAuthenticated") == false) {
             const {location} = this.props;
             // Save this page route for post-auth redirect
             this.props.redirectActions.postAuthRedirect(location.pathname);
@@ -78,40 +86,32 @@ class CoursesPage extends React.Component {
             // click back they don't navigate to the login page.
             this.props.router.push('/login');
         }
+
     }
 
     addCourseClick(event) {
         event.preventDefault();
-        this.toggleModalState();
+        if (this.props.courseModal.get("open")) {
+            this.props.courseFormActions.closeCourseFormScreen();
+        } else {
+            this.props.courseFormActions.openCourseFormScreen('');
+        }
     }
 
     editCourse(courseId) {
-        this.props.courseFormActions.openScreen(this.props.modalData.withMutations(m => {
-            m.set("courseFormModalOpen", true)
-             .set("courseId", courseId);
-        }));
+        this.props.courseFormActions.openCourseFormScreen(courseId);
     }
 
     deleteCourse(courseId) {
         this.props.courseActions.deleteCourse(courseId);
     }
 
-    toggleModalState() {
-        if (this.props.modalData.get("courseFormModalOpen")) {
-            this.props.courseFormActions.closeScreen(this.props.modalData.withMutations(mObj => {
-                mObj.set("courseFormModalOpen", false)
-                    .set("courseId", "");
-            }));
-        } else {
-            this.props.courseFormActions.closeScreen(this.props.modalData.withMutations(mObj => {
-                mObj.set("courseFormModalOpen", true)
-                    .set("courseId", "");
-            }));
-        }
+    showOpenCourseFormModal(courseId) {
+        this.props.openCourseFormActions.openCourseIsOpenFormScreen(courseId);
     }
 
     render() {
-        const {immtblCoursesCntr, authors, modalData} = this.props; /* Destructure objects for easier rendering code (readability) */
+        const {immtblCoursesCntr, authors, courseModal, openCourseModal} = this.props; /* Destructure objects for easier rendering code (readability) */
         return (
             <div className="course-page">
                 <div className="course-page__sidebar">
@@ -122,8 +122,15 @@ class CoursesPage extends React.Component {
                     </a>
                 </div>
                 <SideModal
-                    isOpen={modalData.get("courseFormModalOpen")}>
+                    cssClassName="side-modal-left"
+                    isOpen={courseModal.get("open")}>
                     <ManageCoursePage />
+                </SideModal>
+                <SideModal
+                    cssClassName="side-modal-right"
+                    location="right"
+                    isOpen={openCourseModal.get("open")}>
+                    <OpenCourseForm/>
                 </SideModal>
                 <div className="course-page__main-cntr">
                     <div className="course-page__main">
@@ -132,24 +139,28 @@ class CoursesPage extends React.Component {
                             courses={immtblCoursesCntr.get("allCourses")}
                             allAuthors={authors}
                             onEdit={this.editCourse}
-                            onDelete={this.deleteCourse} />
+                            onDelete={this.deleteCourse}
+                            onEditOpenCourse={this.showOpenCourseFormModal} />
                     </div>
                 </div>
             </div>
         );
     }
-
 }
 
 /* Component Validation */
 CoursesPage.propTypes = {
     immtblCoursesCntr: ImmutablePropTypes.map,
     authors: ImmutablePropTypes.list,
+    courseModal: ImmutablePropTypes.map,
+    openCourseModal: ImmutablePropTypes.map,
     immtblUsr: ImmutablePropTypes.map,
+    loading: PropTypes.bool.isRequired,
     courseActions: PropTypes.object.isRequired,
     courseFormActions: PropTypes.object.isRequired,
+    openCourseFormActions: PropTypes.object.isRequired,
     redirectActions: PropTypes.object.isRequired,
-    modalData: ImmutablePropTypes.map,
+    /* React Router */
     router: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
 };
@@ -159,8 +170,10 @@ function mapStateToProps(state, ownProps) {
     return {
         immtblCoursesCntr: state.coursesReducer.coursesCntr,
         authors: formatAuthorsForDisplay(state.authorsReducer.authorsCntr.get("allAuthors")),
-        modalData: state.courseFormReducer.modalData,
-        immtblUsr: state.authReducer.user
+        courseModal: state.courseFormReducer.modalData,
+        openCourseModal: state.openCourseFormReducer.modalData,
+        immtblUsr: state.authReducer.user,
+        loading: state.ajaxCallsReducer.ajaxCallsInProgress > 0
     };
 }
 
@@ -168,7 +181,8 @@ function mapDispatchToProps(dispatch) {
     return {
         courseActions: bindActionCreators(courseActions, dispatch),  // bindActionCreators automatically wraps courseActions with dispathes
         courseFormActions: bindActionCreators(courseFormActions, dispatch),
-        redirectActions: bindActionCreators(redirectActions, dispatch)
+        redirectActions: bindActionCreators(redirectActions, dispatch),
+        openCourseFormActions: bindActionCreators(openCourseFormActions, dispatch)
     };
 }
 

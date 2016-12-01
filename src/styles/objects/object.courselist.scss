@@ -5,43 +5,16 @@
     @include display-flex;
 }
 
-.courses__rows {
-    height: 50px;
-}
-
-.title-1,
-.col-1,
-.title-6,
-.col-6,
-.title-7,
-.col-7 {
-    width: 50px;
-}
-
 .title-2,
 .col-2 {
     @include flex-grow(1);
-}
-
-.title-3,
-.title-4,
-.title-5,
-.col-3,
-.col-4,
-.col-5 {
-    width: 90px;
-}
-
-.title-4,
-.col-4 {
-    width: 110px;
 }
 
 .col-1,
 .col-2,
 .col-3,
 .col-4,
-.col-5 {
+.col-5,
+.col-6 {
     @include display-flex;
-    align-items: center;
 }

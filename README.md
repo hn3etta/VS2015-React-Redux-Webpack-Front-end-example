@@ -1,7 +1,8 @@
 # VS2015-React-Redux-Webpack-Front-end-example
 Visual Studio 2015 React Redux Webpack Front-end example
 
-This example site was mostly built following Cory House's excellent Pluralsight course "[Building Applications with React and Redux in ES6](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)".  I modified things here and there to fit into Visual Studio 2015 (update 3) and to prove out multiple other technologies.
+This example site was mostly built following Cory House's excellent Pluralsight course "[Building Applications with React and Redux in ES6](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)".  
+I modified things here and there to fit into Visual Studio 2015 (update 3) and to prove out multiple technologies.
 
 If you are completely new to React then I advise you watch [Ryan Florence's React.js course out on FrontEnd Masters](https://frontendmasters.com/courses/react/).
 
@@ -46,21 +47,21 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 	within node_modules.  Needed since Node Tools for Visual Studio runs in 32bit mode 
 11. Right click on VS2015-backend-example project and select "Set as Startup Project" then
     start without debugging (Cntr+F5)
-12. Open the Visual Studio Task Runner Explorer and under package.json right click on Start then click Run.
+12. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
 
 Then visit `localhost:3000` in your browser if your browser didn't already fire up.
 
 
 ### Test Drive the Example Site
 
->**Go ahead and click around on the public content**
+>**Homepage and public content**
 
 Sticking with the Pluralsight theme of "Courses" I created a public and private side of the web app.  The public side has content that talks about the various technologies used to create this example.  You can
 either click on the "Learn More About" navigation links or the home page "Learn More" buttons.  The purpose of this was to showcase how easy it is to use React Router (URL routes).
 
 The site styling is very basic and was put together using SASS and following the ITCSS and BEM methodologies.
 
->**Login and view the private side**
+>**Authentication**
 
 Now click the "Login" link on the top right.
 The login box should animate (GreenSock.js) into the view.  The login box has validation and an error display that slides down at the top of the login container (try entering an invalid username or password).  Animations for the error display are good old CSS Animations using setTimeout.
@@ -69,7 +70,7 @@ Any errors that occur outside of the current component (background asynchronous 
 
 On the .NET Core side of things, I configured CORS and JWT authentication.
 
-Per the instructions, login with a Username of "test@test.com" and a Password of "Password".
+Per the instructions on the login screen, login with a Username of "test@test.com" and a Password of "Password".
 
 >**Courses**
 

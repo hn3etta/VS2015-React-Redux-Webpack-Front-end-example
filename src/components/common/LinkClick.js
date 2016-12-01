@@ -2,14 +2,16 @@
 let React = require('react');
 let PropTypes = React.PropTypes;
 
-class ImageClick extends React.Component {
+class LinkClick extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.imageWasClicked = this.imageWasClicked.bind(this);
+        this.linkWasClicked = this.linkWasClicked.bind(this);
     }
 
-    imageWasClicked() {
+    linkWasClicked(event) {
+        event.preventDefault();
+
         if (this.props.passNumber) {
             this.props.clickAction(this.props.id, this.props.passNumber);
             return;
@@ -20,23 +22,24 @@ class ImageClick extends React.Component {
 
     render() {
         return (
-            <img
+            <a href="#"
                 className={this.props.cssClassName}
-                src={this.props.src}
-                onClick={this.imageWasClicked}
-                title={this.props.title} />
+                onClick={this.linkWasClicked}
+                title={this.props.title}>
+                {this.props.text}
+            </a >
         );
     }
 }
 
-ImageClick.propTypes = {
+LinkClick.propTypes = {
     id: PropTypes.number.isRequired,
     passNumber: PropTypes.number,
-    src: PropTypes.string.isRequired,
     cssClassName: PropTypes.string,
     clickAction: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
     title: PropTypes.string
 };
 
 
-export default ImageClick;
+export default LinkClick;

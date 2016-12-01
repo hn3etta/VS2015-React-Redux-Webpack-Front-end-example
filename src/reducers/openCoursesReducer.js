@@ -33,16 +33,21 @@ export default function openCoursesReducer(state = List(), action) {
                 return openCourseCntrMapObj.set("animateChart", false);
             });
         case types.UPDATED_OPEN_COURSE_ERROR:
+        case types.UPDATE_COURSE_IS_OPEN_SUCCESS:
+        case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
+        case types.UPDATE_COURSE_IS_OPEN_ERROR:
+        case types.DELETE_COURSE_IS_OPEN_ERROR:
             return state.map(openCourseCntrMapObj => {
                 if (openCourseCntrMapObj.get("openCourse").get("id") == action.immtblOpenCourseCntr.get("openCourse").get("id")) {
                     return action.immtblOpenCourseCntr;
                 }
                 return openCourseCntrMapObj;
             });
+        case types.DELETE_COURSE_IS_OPEN_SUCCESS:
+            return state.filter(openCourseCntrMapObj => openCourseCntrMapObj.get("openCourse").get("id") != action.id);
         case types.LOAD_OPEN_COURSES_SUCCESS:
         case types.LOAD_OPEN_COURSES_ERROR:
             return state.merge(action.immtblOpenCoursesList);
-
         default:
             return state;
     }

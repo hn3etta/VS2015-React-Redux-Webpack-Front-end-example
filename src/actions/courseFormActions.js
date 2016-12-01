@@ -1,9 +1,9 @@
 ﻿import * as types from './actionTypes';
 
-export function openScreen(modalData) {
-    return { type: types.OPEN_COURSE_SCREEN, modalData };
+export function openCourseFormScreen(courseId) {
+    return { type: types.OPEN_COURSE_FORM_SCREEN, courseId };
 }
 
-export function closeScreen(modalData) {
-    return { type: types.CLOSE_COURSE_SCREEN, modalData };
+export function closeCourseFormScreen() {
+    return { type: types.CLOSE_COURSE_FORM_SCREEN };
 }

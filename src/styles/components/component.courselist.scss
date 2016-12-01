@@ -6,6 +6,7 @@
 }
 
 .courses__rows {
+    height: 50px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -13,11 +14,41 @@
 .col-1 {
     border-left: 1px solid #ccc;
     text-align: center;
+    width: 50px;
 }
 
 .title-2,
 .col-2 {
     padding-left: 4px;
+}
+
+.title-4,
+.col-4 {
+    width: 110px;
+}
+
+.title-5,
+.col-5 {
+    width: 70px;
+}
+
+.title-6,
+.col-6 {
+    width: 60px;
+}
+
+.title-7,
+.col-7,
+.title-8,
+.col-8 {
+    width: 50px;
+}
+
+.title-3,
+.title-4,
+.col-3,
+.col-4 {
+    width: 90px;
 }
 
 .title-1,
@@ -33,7 +64,8 @@
 .col-4,
 .col-5,
 .col-6,
-.col-7 {
+.col-7,
+.col-8 {
     font-family: 'Ek Mukta', sans-serif;
     border-right: 1px solid #ccc;
 }
@@ -49,9 +81,32 @@
 .col-4,
 .col-5,
 .col-6,
-.col-7 {
+.col-7,
+.col-8 {
     @include justify-content(center);
     text-align: center;
+}
+
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6 {
+    align-items: center;
+}
+
+.course__edit-open-status {
+    @include xsmall-button-no-color;
+    background-color: #2FCF22;
+    color: #fff;
+}
+
+.course__edit-closed-status {
+    @include xsmall-button-no-color;
+    background-color: #FF0000;
+    color: #fff;
 }
 
 .course__edit,

@@ -4,7 +4,7 @@ let Map = require('immutable').Map;
 
 export default {
     modalData: Map({
-        courseFormModalOpen: false,
+        open: false,
         courseId: ''
     })
 };
