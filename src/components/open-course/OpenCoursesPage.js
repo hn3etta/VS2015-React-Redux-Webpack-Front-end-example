@@ -193,16 +193,6 @@ class OpenCoursesPage extends React.Component {
         this.props.openCourseActions.changeOpenCourseRefreshSecs(openCourseId, newSeconds);
     }
 
-    getCourseName(courseId, courseList) {
-        let foundCourse = courseList.find(course => course.get("id") == courseId);
-
-        if (typeof foundCourse == "object") {
-            return foundCourse.get("title");
-        }
-
-        return "";
-    }
-
     render() {
         let openCourseCntrs = this.props.immtblOpenCoursesList;
         let courses = this.props.immtblCoursesList;
@@ -220,7 +210,6 @@ class OpenCoursesPage extends React.Component {
                             maxAttendeeIcon={maxAttendeeIcon}
                             addIcon={addIcon}
                             subtractIcon={subtractIcon}
-                            courseName={this.getCourseName(immtblOpenCourseCntr.get("openCourse").get("courseId"), courses)}
                             immtblOpenCourse={immtblOpenCourseCntr.get("openCourse")}
                             immtblOpenCourseCntr={immtblOpenCourseCntr}
                             openCourseRefreshSecondsChange={this.saveOpenCourseRefreshSeconds}

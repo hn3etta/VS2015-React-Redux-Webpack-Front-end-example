@@ -50,7 +50,6 @@ export default function configureStore(initialState) {
             store.dispatch(userStillAuthenticated());
             store.dispatch(loadAuthors());
             store.dispatch(loadCourses());
-            store.dispatch(loadOpenCourses());
         } else {
             // User's token is invalid - force a login
             store.dispatch(logoffUser());

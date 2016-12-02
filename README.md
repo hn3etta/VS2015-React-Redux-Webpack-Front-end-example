@@ -25,29 +25,31 @@ If you are new to Redux and Webpack please watch [Cory's course first](https://a
 
 
 I created this example site for developers (like myself) that enjoy coding in Visual Studio 2015 and want to expirenece the latest in front-end development.  This starter also uses SASS following ITCSS and BEM.
+#### This is still a work in progress.
 
 ### Running the Example Locally
 
 01. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
     and https://github.com/hn3etta/VS2015-React-Redux-Webpack-Back-end-example to the same location
-02. Make sure Visual Studio 2015 has update 3 installed
-03. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
-04. Install Node.js Tools for Visual Studio
-05. Install Visual Studio extension WebPack Task Runner
-06. Install Visual Studio extension NPM Task Runner
-07. In Visual Studio, open the VS2015-frontend-example.sln file
-08. Right click on VS2015-frontend-example project and select Properties.
+02.
+03. Make sure Visual Studio 2015 has update 3 installed
+04. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
+05. Install Node.js Tools for Visual Studio
+06. Install Visual Studio extension WebPack Task Runner
+07. Install Visual Studio extension NPM Task Runner
+08. In Visual Studio, open the VS2015-frontend-example.sln file
+09. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
-09. Right click on the VS2015-frontend-example's npm package property and 
+10. Right click on the VS2015-frontend-example's npm package property and 
     select "Install Missing npm Packages"
-10. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
+11. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
     (https://github.com/sass/node-sass-binaries) into the node-sass vendor directory.
 	Create a directory called "win32-ia32-47" inside of the node-sass vendor directory
 	and drop the binding node "win32-ia32-47_binding.node" in there and rename to "binding.node".
 	within node_modules.  Needed since Node Tools for Visual Studio runs in 32bit mode 
-11. Right click on VS2015-backend-example project and select "Set as Startup Project" then
+12. Right click on VS2015-backend-example project and select "Set as Startup Project" then
     start without debugging (Cntr+F5)
-12. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
+13. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
 
 Then visit `localhost:3000` in your browser if your browser didn't already fire up.
 
@@ -96,6 +98,17 @@ Just like the course, everything starts at the index.js file in the /src directo
 
 ### To Dos
 
-I didn't have time to finish the following:
+Still need to work on the following
 
-01. Complete all of the unit tests for the components
+01. Fix error handling if openCourseActions’s saveOpenCourse function fails on a new openCourse entry.  Might need to create a container for openCourses List
+02. Fix modal brief display on CoursesPage when component mounts.  Need to work on Greensock timeline setup
+03. Add course “Title” to the “Open Course Settings” modal form
+04. Change approach for action mutations to reducer?  Smaller data objects sent to reducers for merging with state?
+05. Add logic to handle session timeouts while within the applcation (auth checks only occuring on state persist loading for page loads).
+06. Add logic for localization
+07. Complete all of the unit tests for the components
+
+
+### License
+
+MIT
