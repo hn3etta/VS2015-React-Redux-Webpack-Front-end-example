@@ -5,6 +5,7 @@ import * as types from './actionTypes';
 let Map = require('immutable').Map;
 let List = require('immutable').List;
 
+// Model inits
 import initCntrState from '../initModels/initialOpenCourseCntrState';
 // Action creators
 import {beginAjaxCall} from './ajaxStatusActions';
@@ -12,30 +13,37 @@ import {updateCourseIsOpen, updateCourseIsClosed} from './courseActions';
 import {closeCourseIsOpenFormScreen} from './openCourseFormActions';
 // Utilities/Settings
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
+import {getCourseName} from '../utilities/openCourseUtilities';
+import {sortByCourseName} from '../utilities/openCourseUtilities';
 
-
-export function updateOpenCourseSuccess(immtblOpenCoursesCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_SUCCESS, immtblOpenCoursesCntr };
+/* Actions for Open Course edits */
+export function updateOpenCourseSuccess(immtblOpenCourseCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_SUCCESS, immtblOpenCourseCntr };
 }
 
-export function updateOpenCourseNewSuccess(immtblOpenCoursesCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS, immtblOpenCoursesCntr };
+export function updateOpenCourseNewSuccess(immtblOpenCourseCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS, immtblOpenCourseCntr };
 }
 
-export function updateOpenCourseError(immtblOpenCoursesCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_ERROR, immtblOpenCoursesCntr };
+export function updateOpenCourseError(immtblOpenCourseCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_ERROR, immtblOpenCourseCntr };
+}
+
+export function courseNameChangeOccurred(courseNameChange) {
+    return { type: types.COURSE_NAME_CHANGE_FOR_OPEN_COURSE, courseNameChange };
 }
 
 export function deleteOpenCourseSuccess(id) {
     return { type: types.DELETE_COURSE_IS_OPEN_SUCCESS, id };
 }
 
-export function deleteOpenCourseError(immtblOpenCoursesCntr) {
-    return { type: types.DELETE_COURSE_IS_OPEN_ERROR, immtblOpenCoursesCntr };
+export function deleteOpenCourseError(immtblOpenCourseCntr) {
+    return { type: types.DELETE_COURSE_IS_OPEN_ERROR, immtblOpenCourseCntr };
 }
 
+/* Actions for Open Course status screen (simulator) */
 export function loadOpenCoursesSuccess(immtblOpenCoursesList) {
-    return { type: types.LOAD_OPEN_COURSES_SUCCESS, immtblOpenCoursesList: immtblOpenCoursesList };  // ES2015 can consolidate "immtblOpenCoursesList: immtblOpenCoursesList" to just "immtblOpenCoursesList".  Leaving old method for readability
+    return { type: types.LOAD_OPEN_COURSES_SUCCESS, immtblOpenCoursesList };
 }
 
 export function loadOpenCoursesError(immtblOpenCoursesList) {
@@ -121,9 +129,10 @@ export function saveOpenCourse(openCourse) {
               } else {
                   dispatch(updateOpenCourseNewSuccess(initCntrState.openCourseCntr.set("openCourse", immtblUpdtdOpenCourse)
                                                                                   .set("statusText", "")
+                                                                                  .set("courseName", getCourseName(openCourse.courseId, getState().coursesReducer.coursesCntr.get("allCourses")))
                                                                                   .set("ajaxStart", ajaxStartDT)
                                                                                   .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"))));
-                  dispatch(updateCourseIsOpen(immtblOpenCoursesCntr.get("openCourse").get("courseId")));
+                  dispatch(updateCourseIsOpen(immtblUpdtdOpenCourse.get("courseId")));
               }              
           })
           .catch(error => {
@@ -200,16 +209,20 @@ export function loadOpenCourses() {
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
 
               // New immutable list of open courses
-              dispatch(loadOpenCoursesSuccess(List(response.map(ocObj => {
-                  // Convert plain open course object to Immutable Map object
-                  let ocMapObj = Map(ocObj);
-                  return initCntrState.openCourseCntr.set("openCourse", ocMapObj)
-                                                 .set("statusText", "")
-                                                 .set("ajaxStart", ajaxStartDT)
-                                                 .set("ajaxEnd", ajaxEndDT)
-                                                 .set("animateChart", true)
-                                                 .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow());
-              }))));
+              dispatch(loadOpenCoursesSuccess(
+                  List(response.map(ocObj => {
+                      // Convert plain open course object to Immutable Map object
+                      let ocMapObj = Map(ocObj);
+                      return initCntrState.openCourseCntr.set("openCourse", ocMapObj)
+                                                         .set("courseName", getCourseName(ocMapObj.get("courseId"), getState().coursesReducer.coursesCntr.get("allCourses")))
+                                                         .set("statusText", "")
+                                                         .set("ajaxStart", ajaxStartDT)
+                                                         .set("ajaxEnd", ajaxEndDT)
+                                                         .set("animateChart", true)
+                                                         .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow());
+                  }))
+                  .sort(sortByCourseName)
+              ));
           })
           .catch(error => {
               // New immutable lit with one open course container for holding the error info

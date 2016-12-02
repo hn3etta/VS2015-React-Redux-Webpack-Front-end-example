@@ -16,27 +16,31 @@ export default function coursesReducers(state = initialState, action) {
         case types.DELETE_COURSE_SUCCESS:
         case types.DELETE_COURSE_ERROR:
             return { coursesCntr: state.coursesCntr.merge(action.immtblCoursesCntr) };
-
         case types.UPDATE_COURSE_IS_OPEN:
             return {
+                /* Find course and set "isOpen" to true and sort the new state by the course's title */
                 coursesCntr: state.coursesCntr.withMutations(courseCO => {
-                    courseCO.set("allCourses", courseCO.get("allCourses").map(course => {
-                        if (course.get("id") == action.courseId) {
-                            return course.set("isOpen", true);
-                        }
-                        return course;
-                    }));
+                    courseCO.set("allCourses", courseCO.get("allCourses")
+                                                       .map(course => {
+                                                           if (course.get("id") == action.courseId) {
+                                                               return course.set("isOpen", true);
+                                                           }
+                                                           return course;
+                                                       })
+                    );
                 })
             };
         case types.UPDATE_COURSE_IS_CLOSED:
             return {
                 coursesCntr: state.coursesCntr.withMutations(courseCO => {
-                    courseCO.set("allCourses", courseCO.get("allCourses").map(course => {
-                        if (course.get("id") == action.courseId) {
-                            return course.set("isOpen", false);
-                        }
-                        return course;
-                    }));
+                    courseCO.set("allCourses", courseCO.get("allCourses")
+                                                       .map(course => {
+                                                           if (course.get("id") == action.courseId) {
+                                                               return course.set("isOpen", false);
+                                                           }
+                                                           return course;
+                                                       })
+                    );
                 })
             };
         default:

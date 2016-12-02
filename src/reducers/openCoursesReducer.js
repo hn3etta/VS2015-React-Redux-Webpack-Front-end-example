@@ -3,6 +3,8 @@ import * as types from '../actions/actionTypes';
 
 /* Use "require" for non ES6 Modules */
 let List = require('immutable').List;
+// Utilities/Settings
+import {sortByCourseName} from '../utilities/openCourseUtilities';
 
 
 /* Reducers should always return a new array/object.  Never manipulate state directly */
@@ -34,7 +36,6 @@ export default function openCoursesReducer(state = List(), action) {
             });
         case types.UPDATED_OPEN_COURSE_ERROR:
         case types.UPDATE_COURSE_IS_OPEN_SUCCESS:
-        case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
         case types.UPDATE_COURSE_IS_OPEN_ERROR:
         case types.DELETE_COURSE_IS_OPEN_ERROR:
             return state.map(openCourseCntrMapObj => {
@@ -43,11 +44,21 @@ export default function openCoursesReducer(state = List(), action) {
                 }
                 return openCourseCntrMapObj;
             });
+        case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
+            return state.push(action.immtblOpenCourseCntr)
+                        .sort(sortByCourseName);
         case types.DELETE_COURSE_IS_OPEN_SUCCESS:
             return state.filter(openCourseCntrMapObj => openCourseCntrMapObj.get("openCourse").get("id") != action.id);
         case types.LOAD_OPEN_COURSES_SUCCESS:
         case types.LOAD_OPEN_COURSES_ERROR:
             return state.merge(action.immtblOpenCoursesList);
+        case types.COURSE_NAME_CHANGE_FOR_OPEN_COURSE:
+            return state.map(openCourseCntrMapObj => {
+                if (openCourseCntrMapObj.get("openCourse").get("courseId") == action.courseNameChange.courseId) {
+                    return openCourseCntrMapObj.set("courseName", action.courseNameChange.name);
+                }
+                return openCourseCntrMapObj;
+            });
         default:
             return state;
     }

@@ -37,10 +37,13 @@
     <Compile Include="src\actions\courseFormActions.js" />
     <Compile Include="src\actions\courseActions.js" />
     <Compile Include="src\components\open-course\OpenCourseForm.js" />
+    <Compile Include="src\initModels\initalCourseNameChangeState.js" />
     <Compile Include="src\initModels\initialOpenCourseState.js" />
     <Compile Include="src\initModels\initialRedirectState.js" />
     <Compile Include="src\reducers\openCourseFormReducer.js" />
     <Compile Include="src\reducers\redirectReducer.js" />
+    <Compile Include="src\utilities\courseUtilities.js" />
+    <Compile Include="src\utilities\openCourseUtilities.js" />
     <Compile Include="src\utilities\uiDelays.js" />
     <Compile Include="src\components\App.js" />
     <Compile Include="src\components\authentication\LogoffPage.js" />
@@ -97,6 +100,7 @@
     <Compile Include="tools\buildHtml.js" />
     <Compile Include="tools\distServer.js" />
     <Compile Include="webpack.config.js" />
+    <Content Include="LICENSE.md" />
     <Content Include="src\images\add-icon.png" />
     <Content Include="src\images\attendee.png" />
     <Content Include="src\images\attendee_empty.png" />
