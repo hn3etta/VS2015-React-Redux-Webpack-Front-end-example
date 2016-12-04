@@ -14,8 +14,11 @@ export default function authenticationReducers(state = initialState, action) {
     switch (action.type) {
         case types.USER_AUTHENTICATED:
         case types.AUTHENTICATION_ERROR:
-        case types.USER_LOGGED_OFF:
             return { user: state.user.merge(action.immtblUsr) };
+        case types.USER_LOGGED_OFF:
+            return { user: state.user.set("isAuthenticated", false) };
+        case types.USER_STILL_AUTHENTICATED:
+            return { user: state.user.set("isAuthenticated", true) };
     }
 
     return state;

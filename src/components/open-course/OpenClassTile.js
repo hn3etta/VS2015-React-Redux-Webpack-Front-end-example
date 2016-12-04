@@ -10,12 +10,12 @@ let PieChart = require('react-d3-components').PieChart;
 let ImmutablePropTypes = require('react-immutable-proptypes');
 
 
-const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, subtractIcon, courseName, immtblOpenCourse, immtblOpenCourseCntr, openCourseRefreshSecondsChange, refreshSecsInterval}) => {
+const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, subtractIcon, immtblOpenCourse, immtblOpenCourseCntr, openCourseRefreshSecondsChange, refreshSecsInterval}) => {
     return (
         <div className="oc-container">
             <div className="oc-item-top-text">
                 <p className="oc-item-top-text__title">
-                    {courseName}
+                    {immtblOpenCourseCntr.get("courseName")}
                 </p>
             </div>
             <div className="oc-item-main">
@@ -162,7 +162,6 @@ OpenClassTile.propTypes = {
     maxAttendeeIcon: PropTypes.string,
     addIcon: PropTypes.string,
     subtractIcon: PropTypes.string,
-    courseName: PropTypes.string,
     immtblOpenCourse: ImmutablePropTypes.map,
     immtblOpenCourseCntr: ImmutablePropTypes.map,
     openCourseRefreshSecondsChange: PropTypes.func.isRequired,

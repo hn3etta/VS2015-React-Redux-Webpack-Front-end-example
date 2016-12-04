@@ -4,7 +4,6 @@ import initialState from '../initModels/initialAjaxState';
 import {createReducer} from '../utilities/reducerUtilities';
 
 export default function ajaxStatusReducer(state = initialState, action) {
-
     switch (action.type) {
         case types.BEGIN_AJAX_CALL:
             return { ajaxCallsInProgress: state.ajaxCallsInProgress + 1 };
@@ -25,7 +24,12 @@ export default function ajaxStatusReducer(state = initialState, action) {
         case types.LOAD_OPEN_COURSES_ERROR:
         case types.UPDATED_OPEN_COURSE_SUCCESS:
         case types.UPDATED_OPEN_COURSE_ERROR:
-            return { ajaxCallsInProgress: state.ajaxCallsInProgress - 1 };
+        case types.UPDATE_COURSE_IS_OPEN_SUCCESS:
+        case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
+        case types.UPDATE_COURSE_IS_OPEN_ERROR:
+        case types.DELETE_COURSE_IS_OPEN_ERROR:
+        case types.DELETE_COURSE_IS_OPEN_SUCCESS:
+            return { ajaxCallsInProgress: state.ajaxCallsInProgress > 0 ? state.ajaxCallsInProgress - 1 : 0 };
     }
 
     return state;

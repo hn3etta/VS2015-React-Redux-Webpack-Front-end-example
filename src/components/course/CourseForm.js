@@ -2,6 +2,7 @@
 import { Link } from 'react-router';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+import BooleanLinks from '../common/BooleanLinks';
 
 /* Use "require" for non ES6 Modules */
 let React = require('react');

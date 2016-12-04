@@ -22,8 +22,12 @@ export function userAuthenticationError(immtblUsr) {
     return { type: types.AUTHENTICATION_ERROR, immtblUsr };
 }
 
-export function userLoggedOff(immtblUsr) {
-    return { type: types.USER_LOGGED_OFF, immtblUsr };
+export function logoffUser() {
+    return { type: types.USER_LOGGED_OFF };
+}
+
+export function userStillAuthenticated() {
+    return { type: types.USER_STILL_AUTHENTICATED };
 }
 
 /* Action Thunks */
@@ -87,11 +91,5 @@ export function authenticateUser(username, password) {
                       .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
               })));
           });
-    };
-}
-
-export function logoffUser() {
-    return function (dispatch, getState) {
-        dispatch(userLoggedOff(getState().authReducer.user.merge(initUsrState.user).set("isAuthenticated",false)));
     };
 }

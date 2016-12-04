@@ -16,7 +16,7 @@ import rootReducer from '../reducers';
 import {loadAuthors} from '../actions/authorActions';
 import {loadCourses} from '../actions/courseActions';
 import {loadOpenCourses} from '../actions/openCourseActions';
-import {logoffUser} from '../actions/authenticationActions';
+import {logoffUser, userStillAuthenticated} from '../actions/authenticationActions';
 
 const encryptor = createEncryptor({
     secretKey: 'amirdxstrk-1t01z-1652-rvl'
@@ -47,9 +47,9 @@ export default function configureStore(initialState) {
         // JWT authentication token expires (in seconds) are still valid
         if (moment(immtblUsr.get("ajaxEnd"), "YYYY-MM-DD:HH:mm:ss.SSS").add(immtblUsr.get("authExpiresIn"), "s").isAfter(moment())) {
             // User's bearer token is valid so perform all AJAX requests needed for authd user
+            store.dispatch(userStillAuthenticated());
             store.dispatch(loadAuthors());
             store.dispatch(loadCourses());
-            store.dispatch(loadOpenCourses());
         } else {
             // User's token is invalid - force a login
             store.dispatch(logoffUser());

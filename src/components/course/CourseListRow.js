@@ -7,11 +7,12 @@ let ImmutablePropTypes = require('react-immutable-proptypes');
 
 // Presentational Components
 import ImageClick from '../common/ImageClick';
+import LinkClick from '../common/LinkClick';
 // Images
 import EditIcon from '../../images/edit-icon.png';
 import DeleteIcon from '../../images/trash-can.png';
 
-const CourseListRow = ({course, editCallback, deleteCallback, allAuthors}) => {
+const CourseListRow = ({course, editCallback, deleteCallback, editOpenCourseCallback, allAuthors}) => {
     // convert authorId to author full name
     function authorDisplay(authors, authorId) {
         let author = allAuthors.filter(
@@ -46,6 +47,14 @@ const CourseListRow = ({course, editCallback, deleteCallback, allAuthors}) => {
                 {course.get("length")}
             </div>
             <div className="col-6">
+                <LinkClick
+                    id={course.get("id")}
+                    cssClassName={course.get("isOpen") ? "course__edit-open-status" : "course__edit-closed-status"}
+                    clickAction={editOpenCourseCallback}
+                    text={course.get("isOpen") ? "Open" : "Closed"}
+                    title="Change Open Course Status" />
+            </div>
+            <div className="col-7">
                 <ImageClick
                     id={course.get("id")}
                     src={EditIcon}
@@ -53,7 +62,7 @@ const CourseListRow = ({course, editCallback, deleteCallback, allAuthors}) => {
                     clickAction={editCallback}
                     title="Edit Course" />
             </div>
-            <div className="col-7">
+            <div className="col-8">
                 <ImageClick
                     id={course.get("id")}
                     src={DeleteIcon}
@@ -69,6 +78,7 @@ CourseListRow.propTypes = {
     course: PropTypes.object.isRequired,
     editCallback: PropTypes.func.isRequired,
     deleteCallback: PropTypes.func.isRequired,
+    editOpenCourseCallback: PropTypes.func.isRequired,
     allAuthors: ImmutablePropTypes.list
 };
 
