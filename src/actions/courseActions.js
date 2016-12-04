@@ -5,11 +5,14 @@ import * as types from './actionTypes';
 let Map = require('immutable').Map;
 let List = require('immutable').List;
 
+// Model inits
+import initCourseNameChangeState from '../initModels/initalCourseNameChangeState';
 // Action creators
 import {beginAjaxCall} from './ajaxStatusActions';
+import {courseNameChangeOccurred, loadOpenCourses} from './openCourseActions';
 // Utilities/Settings
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
-
+import {sortByTitle} from '../utilities/courseUtilities';
 
 export function loadCoursesSuccess(immtblCoursesCntr) {
     return { type: types.LOAD_COURSES_SUCCESS, immtblCoursesCntr: immtblCoursesCntr };  // ES2015 can consolidate "course: course" to just "course".  Leaving old method for readability
@@ -43,6 +46,14 @@ export function deleteCourseError(immtblCoursesCntr) {
     return { type: types.DELETE_COURSE_ERROR, immtblCoursesCntr };
 }
 
+export function updateCourseIsOpen(courseId) {
+    return { type: types.UPDATE_COURSE_IS_OPEN, courseId };
+}
+
+export function updateCourseIsClosed(courseId) {
+    return { type: types.UPDATE_COURSE_IS_CLOSED, courseId };
+}
+
 /* Action Thunks */
 export function loadCourses() {
     return function (dispatch, getState) {
@@ -65,11 +76,14 @@ export function loadCourses() {
           .then(response => {
               // New immutable object setting allCourses and ajaxEnd
               dispatch(loadCoursesSuccess(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", List(response.map(course => Map(course))))
+                  // Create set "allCourses" to a List that is sorted by "Title"
+                  mObj.set("allCourses", List(response.map(course => Map(course)))
+                                                      .sort(sortByTitle))
                       .set("statusText", "")
                       .set("ajaxStart", ajaxStartDT)
                       .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
               })));
+              dispatch(loadOpenCourses());
           })
           .catch(error => {
               // New immutable object setting statusText and ajaxEnd
@@ -100,28 +114,31 @@ export function addCourse(course) {
             },
             body: JSON.stringify(course)
         }).then(checkHttpStatus)
-            .then(parseJSON)
-            .then(response => {
-                // Get the latest couresCntr from the store
-                let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
-                // New immutable object updating the existing course in immtblCoursesCntr 
-                // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
-                // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
-                dispatch(createCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                    mObj.set("allCourses", immtblCoursesCntr.get("allCourses").push(Map(response)))
-                        .set("statusText", "")
-                        .set("ajaxStart", ajaxStartDT)
-                        .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                })));
-            })
-            .catch(error => {
-                // New immutable object setting statusText and ajaxEnd
-                dispatch(createCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                    mObj.set("statusText", "Add Course Error: " + error.message)
-                        .set("ajaxStart", ajaxStartDT)
-                        .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                })));
-            });
+          .then(parseJSON)
+          .then(response => {
+              // Get the latest couresCntr from the store
+              let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
+              // New immutable object updating the existing course in immtblCoursesCntr 
+              // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
+              // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
+              dispatch(createCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
+                  mObj.set("allCourses", immtblCoursesCntr
+                                            .get("allCourses")
+                                            .push(Map(response))
+                                            .sort(sortByTitle))
+                      .set("statusText", "")
+                      .set("ajaxStart", ajaxStartDT)
+                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
+              })));
+          })
+          .catch(error => {
+              // New immutable object setting statusText and ajaxEnd
+              dispatch(createCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
+                  mObj.set("statusText", "Add Course Error: " + error.message)
+                      .set("ajaxStart", ajaxStartDT)
+                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
+              })));
+          });
     };
 }
 
@@ -151,16 +168,19 @@ export function saveCourse(course) {
               // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
               // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
               dispatch(updateCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").map( c => {
-                              if(c.get("id") == course.id){ 
-                                  return c.merge(Map(course));
-                              }
-                              return c;
-                          }))
+                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses")
+                                                          .map(c => {
+                                                                if(c.get("id") == course.id){ 
+                                                                    return c.merge(Map(response));
+                                                                }
+                                                                return c;
+                                                           })
+                                                           .sort(sortByTitle))
                       .set("statusText", "")
                       .set("ajaxStart", ajaxStartDT)
                       .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
               })));
+              dispatch(courseNameChangeOccurred(Object.assign({}, initCourseNameChangeState, { courseId: course.id, name: course.title })));
           })
           .catch(error => {
               // New immutable object setting statusText and ajaxEnd
@@ -197,12 +217,7 @@ export function deleteCourse(courseId) {
               // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
               // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
               dispatch(deleteCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").filter(c => {
-                      if (c.get("id") == courseId) {
-                          return false;
-                      }
-                      return true;
-                  }))
+                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").filter(c => c.get("id") != courseId))
                       .set("statusText", "")
                       .set("ajaxStart", ajaxStartDT)
                       .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));

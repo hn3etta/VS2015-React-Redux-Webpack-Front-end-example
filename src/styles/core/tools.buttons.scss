@@ -34,6 +34,32 @@
     padding: 10px 6px;
 }
 
+@mixin xsmall-button(){
+    @include button-reset;
+    background-color: $button-primary;
+    color: $button-text;
+    border-radius: 4px;
+    padding: 6px 6px;
+}
+
+@mixin button-no-color() {
+    @include button-reset;
+    border-radius: 6px;
+    padding: 15px 10px;
+}
+
+@mixin small-button-no-color(){
+    @include button-reset;
+    border-radius: 6px;
+    padding: 10px 6px;
+}
+
+@mixin xsmall-button-no-color(){
+    @include button-reset;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
 @mixin button-hover(){
     background-color: $button-secondary;
 }

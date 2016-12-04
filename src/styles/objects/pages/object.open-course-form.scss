@@ -1,0 +1,22 @@
+﻿@import '../../toolkits/core-imports.scss';
+
+.open-course-form__button-cntr {
+    margin-top: 30px;
+}
+
+.open-course-form__input-cntr {
+    margin-top: 20px;
+}
+
+.open-course-form__title-input,
+.open-course-form__author-select,
+.open-course-form__category-input,
+.open-course-form__length-input,
+.open-course-form__watchHref-input {
+    margin-top: 5px;
+}
+
+.open-course-form__button-cntr,
+.open-course-form__action-btn {
+    position: relative;
+}

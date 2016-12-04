@@ -7,7 +7,7 @@ let React = require('react');
 let PropTypes = React.PropTypes;
 let ImmutablePropTypes = require('react-immutable-proptypes');
 
-const CourseList = ({courses, onEdit, onDelete, allAuthors}) => {
+const CourseList = ({courses, onEdit, onDelete, onEditOpenCourse, allAuthors}) => {
     return (
         <section className="courses">
             <div className="courses__headings">
@@ -24,11 +24,14 @@ const CourseList = ({courses, onEdit, onDelete, allAuthors}) => {
                 <div className="title-5">
                     Length
                 </div>
-                <div className="title-6"></div>
+                <div className="title-6">
+                    Status
+                </div>
                 <div className="title-7"></div>
+                <div className="title-8"></div>
             </div>
             {courses.map(immtblCourse =>
-                <CourseListRow key={immtblCourse.get("id")} course={immtblCourse} allAuthors={allAuthors} editCallback={onEdit} deleteCallback={onDelete}/>
+                <CourseListRow key={immtblCourse.get("id")} course={immtblCourse} allAuthors={allAuthors} editCallback={onEdit} deleteCallback={onDelete} editOpenCourseCallback={onEditOpenCourse}/>
             )}
         </section>
     );
@@ -38,7 +41,8 @@ CourseList.propTypes = {
     courses: ImmutablePropTypes.list,
     allAuthors: ImmutablePropTypes.list,
     onEdit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onEditOpenCourse: PropTypes.func.isRequired
 };
 
 export default CourseList;

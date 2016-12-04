@@ -6,6 +6,7 @@ import courseFormReducer from './courseFormReducer';
 import authReducer from './authenticationReducer';
 import animationsReducer from './animationsReducer';
 import openCoursesReducer from './openCoursesReducer';
+import openCourseFormReducer from './openCourseFormReducer';
 import redirectReducer from './redirectReducer';
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     authReducer,
     animationsReducer,
     openCoursesReducer,
+    openCourseFormReducer,
     redirectReducer
 });
 

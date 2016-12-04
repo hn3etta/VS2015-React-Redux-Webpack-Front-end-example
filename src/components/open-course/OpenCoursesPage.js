@@ -70,9 +70,9 @@ class OpenCoursesPage extends React.Component {
         return false;
     }
 
-    componentWillUpdate() {
+    componentWillUpdate(nextProps) {
         // Check if user is authenticated
-        if (this.props.immtblUsr.get("isAuthenticated") == false) {
+        if (nextProps.immtblUsr.get("isAuthenticated") == false) {
             const {location} = this.props;
             // Save this page route for post-auth redirect
             this.props.redirectActions.postAuthRedirect(location.pathname);
@@ -80,6 +80,7 @@ class OpenCoursesPage extends React.Component {
             // click back they don't navigate to the login page.
             this.props.router.push('/login');
         }
+
     }
 
     componentWillUnmount() {
@@ -192,15 +193,6 @@ class OpenCoursesPage extends React.Component {
         this.props.openCourseActions.changeOpenCourseRefreshSecs(openCourseId, newSeconds);
     }
 
-    getCourseName(courseId, courseList) {
-        let foundCourse = courseList.filter(course => course.get("id") == courseId);
-        if (foundCourse.size > 0) {
-            return foundCourse.get(0).get("title");
-        }
-
-        return "";
-    }
-
     render() {
         let openCourseCntrs = this.props.immtblOpenCoursesList;
         let courses = this.props.immtblCoursesList;
@@ -218,7 +210,6 @@ class OpenCoursesPage extends React.Component {
                             maxAttendeeIcon={maxAttendeeIcon}
                             addIcon={addIcon}
                             subtractIcon={subtractIcon}
-                            courseName={this.getCourseName(immtblOpenCourseCntr.get("openCourse").get("id"), courses)}
                             immtblOpenCourse={immtblOpenCourseCntr.get("openCourse")}
                             immtblOpenCourseCntr={immtblOpenCourseCntr}
                             openCourseRefreshSecondsChange={this.saveOpenCourseRefreshSeconds}
@@ -247,7 +238,7 @@ function mapStateToProps(state, ownProps) {
     return {
         immtblUsr: state.authReducer.user,
         immtblCoursesList: state.coursesReducer.coursesCntr.get("allCourses"),
-        immtblOpenCoursesList: state.openCoursesReducer        
+        immtblOpenCoursesList: state.openCoursesReducer
     };
 }
 

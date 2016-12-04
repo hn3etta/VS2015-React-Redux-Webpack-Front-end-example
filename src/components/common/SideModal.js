@@ -10,6 +10,12 @@ let TweenLite = require('gsap').TweenLite;
 class SideModal extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        this.determineModalDisplay = this.determineModalDisplay.bind(this);
+    }
+
+    componentDidMount() {
+        this.determineModalDisplay();
     }
 
     /* React lifecycle function - exeuctes when props or state changes detected.  Here you can determine if the component needs to re-render or not */
@@ -22,20 +28,46 @@ class SideModal extends React.Component {
     }
 
     componentDidUpdate() {      
+        this.determineModalDisplay();
+    }
+
+    determineModalDisplay() {
         let sideModalCntr = ReactDOM.findDOMNode(this.refs.sideModalCntr);
 
-        // Animate modal displa
-        if (this.props.isOpen) {
+        // Animate modal display
+        switch (this.props.location) {
+            case "right":
+                this.animateRightDisplay(this.props.isOpen, sideModalCntr, TweenLite);
+                break;
+            case "left":
+            default:
+                this.animateLeftDisplay(this.props.isOpen, sideModalCntr, TweenLite);
+                break;
+        }
+
+    }
+
+    animateLeftDisplay(isOpen, element, TweenLite) {
+        if (isOpen) {
             // slide in from the left and fade in
-            TweenLite.fromTo(sideModalCntr, 0.5, { x: -1000, opacity: 0, zIndex: 0 }, { x: 0, opacity: 1, zIndex: 1 });
+            TweenLite.fromTo(element, 0.5, { x: -1000, opacity: 0, zIndex: 0 }, { x: 0, opacity: 1, zIndex: 1 });
         } else {
-            TweenLite.fromTo(sideModalCntr, 0.5, { x: 0, opacity: 1, zIndex: 1 }, { x: -1000, opacity: 0, zIndex: 0 });
+            TweenLite.fromTo(element, 0.5, { x: 0, opacity: 1, zIndex: 1 }, { x: -1000, opacity: 0, zIndex: -1 });
+        }
+    }
+
+    animateRightDisplay(isOpen, element, TweenLite) {
+        if (isOpen) {
+            // slide in from the right and fade in
+            TweenLite.fromTo(element, 0.5, { x: 1000, opacity: 0, zIndex: 0 }, { x: 0, opacity: 1, zIndex: 1 });
+        } else {
+            TweenLite.fromTo(element, 0.5, { x: 0, opacity: 1, zIndex: 1 }, { x: 1000, opacity: 0, zIndex: -1 });
         }
     }
 
     render() {
         return (
-            <div ref="sideModalCntr" className="side-modal">
+            <div ref="sideModalCntr" className={this.props.cssClassName}>
                 {this.props.children}
             </div>
         );
@@ -44,6 +76,8 @@ class SideModal extends React.Component {
 
 SideModal.propTypes = {
     children: PropTypes.node,
+    cssClassName: PropTypes.string.isRequired,
+    location: PropTypes.string,
     isOpen: PropTypes.bool.isRequired
 };
 
