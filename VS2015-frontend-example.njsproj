@@ -37,7 +37,7 @@
     <Compile Include="src\actions\courseFormActions.js" />
     <Compile Include="src\actions\courseActions.js" />
     <Compile Include="src\components\open-course\OpenCourseForm.js" />
-    <Compile Include="src\initModels\initalCourseNameChangeState.js" />
+    <Compile Include="src\initModels\initialOpenCoursesCntrState.js" />
     <Compile Include="src\initModels\initialOpenCourseState.js" />
     <Compile Include="src\initModels\initialRedirectState.js" />
     <Compile Include="src\reducers\openCourseFormReducer.js" />
@@ -80,7 +80,7 @@
     <Compile Include="src\initModels\initialAnimationsState.js" />
     <Compile Include="src\initModels\initialOpenCourseCntrState.js" />
     <Compile Include="src\initModels\initialCourseFormState.js" />
-    <Compile Include="src\initModels\initialCourseCntrState.js" />
+    <Compile Include="src\initModels\initialCoursesCntrState.js" />
     <Compile Include="src\initModels\initialAuthorsState.js" />
     <Compile Include="src\initModels\initialUserState.js" />
     <Compile Include="src\initModels\initialModalState.js" />

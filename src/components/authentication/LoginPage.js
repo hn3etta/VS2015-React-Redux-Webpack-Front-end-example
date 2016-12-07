@@ -55,16 +55,12 @@ class LoginPage extends React.Component {
     }
 
     componentDidMount() {
-        // Animate login display.. Fade into view?
         let loginCntr = ReactDOM.findDOMNode(this.refs.loginContainer);
         // Animate login display.. Fade into view?
         if (this.props.animationSettings.get("loginDisplay")) {
             TweenLite.fromTo(loginCntr, 0.5, { y: -1000, opacity: 0 }, { y: 0, opacity: 1 });
-            // New immutable object setting loginDisplay that is passed into the loginAnimation action 
-            // that sets the global animation settings in the store
-            this.props.animActions.loginAnimation(this.props.animationSettings.withMutations(mObj => {
-                mObj.set("loginDisplay", false);
-            }));
+
+            this.props.animActions.loginAnimation();
         } else {
             TweenLite.fromTo(loginCntr, 0.5, { opacity: 0 }, { opacity: 1 });
         }

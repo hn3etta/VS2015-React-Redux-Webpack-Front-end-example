@@ -11,7 +11,7 @@ export default function animationsReducer(state = initialState, action) {
 
     switch (action.type) {
         case types.LOGIN_PAGE_INITIAL_ANIMATION:
-            return { animationSettings: state.animationSettings.merge(action.animationSettings) };
+            return { animationSettings: state.animationSettings.set("loginDisplay", false) };
     }
 
     return state;

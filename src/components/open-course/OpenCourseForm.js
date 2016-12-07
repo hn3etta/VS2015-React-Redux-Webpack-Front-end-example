@@ -173,7 +173,7 @@ OpenCourseForm.propTypes = {
 function mapStateToProps(state, ownProps) {
     return {
         openCourseModal: state.openCourseFormReducer.modalData,
-        immtblOpenCoursesList: state.openCoursesReducer,
+        immtblOpenCoursesList: state.openCoursesReducer.openCoursesCntr.get("allOpenCourses"),
         loading: state.ajaxCallsReducer.ajaxCallsInProgress > 0
     };
 }
