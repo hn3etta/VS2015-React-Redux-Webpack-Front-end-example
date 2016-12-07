@@ -34,3 +34,6 @@ dist
 
 # Mac files
 .DS_Store
+typings/globals/node/index.d.ts
+typings/globals/node/typings.json
+typings/index.d.ts
