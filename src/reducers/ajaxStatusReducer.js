@@ -11,10 +11,10 @@ export default function ajaxStatusReducer(state = initialState, action) {
         case types.LOAD_AUTHORS_ERROR:
         case types.LOAD_COURSES_SUCCESS:
         case types.LOAD_COURSES_ERROR:
-        case types.CREATE_COURSES_SUCCESS:
-        case types.CREATE_COURSES_ERROR:
-        case types.UPDATE_COURSES_SUCCESS:
-        case types.UPDATE_COURSES_ERROR:
+        case types.CREATE_COURSE_SUCCESS:
+        case types.CREATE_COURSE_ERROR:
+        case types.UPDATE_COURSE_SUCCESS:
+        case types.UPDATE_COURSE_ERROR:
         case types.DELETE_COURSE_SUCCESS:
         case types.DELETE_COURSE_ERROR:
         case types.USER_AUTHENTICATED:
@@ -26,6 +26,7 @@ export default function ajaxStatusReducer(state = initialState, action) {
         case types.UPDATED_OPEN_COURSE_ERROR:
         case types.UPDATE_COURSE_IS_OPEN_SUCCESS:
         case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
+        case types.CREATE_COURSE_IS_OPEN_ERROR:
         case types.UPDATE_COURSE_IS_OPEN_ERROR:
         case types.DELETE_COURSE_IS_OPEN_ERROR:
         case types.DELETE_COURSE_IS_OPEN_SUCCESS:

@@ -6,44 +6,44 @@ let Map = require('immutable').Map;
 let List = require('immutable').List;
 
 // Model inits
-import initCourseNameChangeState from '../initModels/initalCourseNameChangeState';
+
 // Action creators
 import {beginAjaxCall} from './ajaxStatusActions';
-import {courseNameChangeOccurred, loadOpenCourses} from './openCourseActions';
+import {courseNameChangeOccurred, loadOpenCourses, courseDeleted} from './openCourseActions';
 // Utilities/Settings
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
 import {sortByTitle} from '../utilities/courseUtilities';
 
-export function loadCoursesSuccess(immtblCoursesCntr) {
-    return { type: types.LOAD_COURSES_SUCCESS, immtblCoursesCntr: immtblCoursesCntr };  // ES2015 can consolidate "course: course" to just "course".  Leaving old method for readability
+export function loadCoursesSuccess(loadedCoursesCntr) {
+    return { type: types.LOAD_COURSES_SUCCESS, loadedCoursesCntr: loadedCoursesCntr };  // ES2015 can consolidate "course: course" to just "course".  Leaving old method for readability
 }
 
-export function loadCoursesError(immtblCoursesCntr) {
-    return { type: types.LOAD_COURSES_ERROR, immtblCoursesCntr };
+export function loadCoursesError(loadedCoursesErrorCntr) {
+    return { type: types.LOAD_COURSES_ERROR, loadedCoursesErrorCntr };
 }
 
-export function createCourseSuccess(immtblCoursesCntr) {
-    return { type: types.CREATE_COURSES_SUCCESS, immtblCoursesCntr }; 
+export function createCourseSuccess(createdCoursesCntr) {
+    return { type: types.CREATE_COURSE_SUCCESS, createdCoursesCntr }; 
 }
 
-export function createCourseError(immtblCoursesCntr) {
-    return { type: types.CREATE_COURSES_SUCCESS, immtblCoursesCntr };
+export function createCourseError(createdCoursesErrorCntr) {
+    return { type: types.CREATE_COURSE_ERROR, createdCoursesErrorCntr };
 }
 
-export function updateCourseSuccess(immtblCoursesCntr) {
-    return { type: types.UPDATE_COURSES_SUCCESS, immtblCoursesCntr };
+export function updateCourseSuccess(updatedCourseCntr) {
+    return { type: types.UPDATE_COURSE_SUCCESS, updatedCourseCntr };
 }
 
-export function updateCourseError(immtblCoursesCntr) {
-    return { type: types.UPDATE_COURSES_ERROR, immtblCoursesCntr };
+export function updateCourseError(updatedCourseErrorCntr) {
+    return { type: types.UPDATE_COURSE_ERROR, updatedCourseErrorCntr };
 }
 
-export function deleteCourseSuccess(immtblCoursesCntr) {
-    return { type: types.DELETE_COURSE_SUCCESS, immtblCoursesCntr };
+export function deleteCourseSuccess(deletedCourseCntr) {
+    return { type: types.DELETE_COURSE_SUCCESS, deletedCourseCntr };
 }
 
-export function deleteCourseError(immtblCoursesCntr) {
-    return { type: types.DELETE_COURSE_ERROR, immtblCoursesCntr };
+export function deleteCourseError(deletedCourseErrorCntr) {
+    return { type: types.DELETE_COURSE_ERROR, deletedCourseErrorCntr };
 }
 
 export function updateCourseIsOpen(courseId) {
@@ -74,24 +74,26 @@ export function loadCourses() {
         }).then(checkHttpStatus)
           .then(parseJSON)
           .then(response => {
-              // New immutable object setting allCourses and ajaxEnd
-              dispatch(loadCoursesSuccess(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  // Create set "allCourses" to a List that is sorted by "Title"
-                  mObj.set("allCourses", List(response.map(course => Map(course)))
-                                                      .sort(sortByTitle))
-                      .set("statusText", "")
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch courses created with a temporary object
+              dispatch(loadCoursesSuccess(
+                  {
+                      ImmtblCoursesList: List(response.map(course => Map(course))),
+                      statusText: "",
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
               dispatch(loadOpenCourses());
           })
           .catch(error => {
-              // New immutable object setting statusText and ajaxEnd
-              dispatch(loadCoursesError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  mObj.set("statusText", "Load Courses Error: " + error.message)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch courses error with a temporary object
+              dispatch(loadCoursesError(
+                  {
+                      statusText: "Load Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }
@@ -116,28 +118,25 @@ export function addCourse(course) {
         }).then(checkHttpStatus)
           .then(parseJSON)
           .then(response => {
-              // Get the latest couresCntr from the store
-              let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
-              // New immutable object updating the existing course in immtblCoursesCntr 
-              // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
-              // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
-              dispatch(createCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr
-                                            .get("allCourses")
-                                            .push(Map(response))
-                                            .sort(sortByTitle))
-                      .set("statusText", "")
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch course created with a temporary object
+              dispatch(createCourseSuccess(
+                  {
+                      ImmtblCourse: Map(response),
+                      statusText: "",
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           })
           .catch(error => {
-              // New immutable object setting statusText and ajaxEnd
-              dispatch(createCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  mObj.set("statusText", "Add Course Error: " + error.message)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch add course error with a temporary object
+              dispatch(createCourseError(
+                  {
+                      statusText: "Add Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }
@@ -162,33 +161,31 @@ export function saveCourse(course) {
         }).then(checkHttpStatus)
           .then(parseJSON)
           .then(response => {
-              // Get the latest couresCntr from the store
-              let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
-              // New immutable object updating the existing course in immtblCoursesCntr 
-              // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
-              // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
-              dispatch(updateCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses")
-                                                          .map(c => {
-                                                                if(c.get("id") == course.id){ 
-                                                                    return c.merge(Map(response));
-                                                                }
-                                                                return c;
-                                                           })
-                                                           .sort(sortByTitle))
-                      .set("statusText", "")
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
-              dispatch(courseNameChangeOccurred(Object.assign({}, initCourseNameChangeState, { courseId: course.id, name: course.title })));
+              // Dispatch updated course with a temporary object
+              dispatch(updateCourseSuccess(
+                  {
+                      ImmtblCourse: Map(response),
+                      statusText: "",
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
+              // Dispatch updated course name with a temporary object
+              dispatch(courseNameChangeOccurred(
+                  {
+                      courseId: course.id,
+                      name: course.title
+                  }));
           })
           .catch(error => {
-              // New immutable object setting statusText and ajaxEnd
-              dispatch(updateCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  mObj.set("statusText", "Update Course Error: " + error.message)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch course save error with a temporary object
+              dispatch(updateCourseError(
+                  {
+                      statusText: "Update Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }
@@ -211,25 +208,27 @@ export function deleteCourse(courseId) {
             }
         }).then(checkHttpStatus)
           .then(response => {
-              // Get the latest couresCntr from the store
-              let immtblCoursesCntr = getState().coursesReducer.coursesCntr;
-              // New immutable object updating the existing course in immtblCoursesCntr
-              // and setting ajaxStart and ajaxEnd for immtblCoursesCntr
-              // -- for "allCourses" find updated course and convert to Immutable Map and merge with current course
-              dispatch(deleteCourseSuccess(immtblCoursesCntr.withMutations(mObj => {
-                  mObj.set("allCourses", immtblCoursesCntr.get("allCourses").filter(c => c.get("id") != courseId))
-                      .set("statusText", "")
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch deleted course with a temporary object
+              dispatch(deleteCourseSuccess(
+                  {
+                      courseId: courseId,
+                      statusText: "",
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
+
+              dispatch(courseDeleted(courseId));
           })
           .catch(error => {
-              // New immutable object setting statusText and ajaxEnd
-              dispatch(deleteCourseError(getState().coursesReducer.coursesCntr.withMutations(mObj => {
-                  mObj.set("statusText", "Delete Course Error: " + error.message)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              // Dispatch deleted course error with a temporary object
+              dispatch(deleteCourseError(
+                  {
+                      statusText: "Delete Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }

@@ -11,12 +11,12 @@ import {beginAjaxCall} from './ajaxStatusActions';
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
 
 
-export function loadAuthorsSuccess(immtblAuthorsCntr) {
-    return { type: types.LOAD_AUTHORS_SUCCESS, immtblAuthorsCntr };
+export function loadAuthorsSuccess(loadedAuthorsCntr) {
+    return { type: types.LOAD_AUTHORS_SUCCESS, loadedAuthorsCntr };
 }
 
-export function loadAuthorsError(immtblAuthorsCntr) {
-    return { type: types.LOAD_AUTHORS_ERROR, immtblAuthorsCntr };
+export function loadAuthorsError(loadedAuthorsErrorCntr) {
+    return { type: types.LOAD_AUTHORS_ERROR, loadedAuthorsErrorCntr };
 }
 
 /* Action Thunks - Perform API call for getting Authors */
@@ -40,20 +40,24 @@ export function loadAuthors() {
           .then(parseJSON)
           .then(response => {
               // New immutable object setting allCourses and ajaxEnd
-              dispatch(loadAuthorsSuccess(getState().authorsReducer.authorsCntr.withMutations(mObj => {
-                  mObj.set("allAuthors", List(response.map(author => Map(author))))
-                      .set("statusText", "")
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              dispatch(loadAuthorsSuccess(
+                  {
+                      allAuthors: List(response.map(author => Map(author))),
+                      statusText: '',
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           })
           .catch(error => {
               // New immutable object setting statusText and ajaxEnd
-              dispatch(loadAuthorsError(getState().authorsReducer.authorsCntr.withMutations(mObj => {
-                  mObj.set("statusText", "Load Authors Error: " + error.message)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              dispatch(loadAuthorsError(
+                  {
+                      statusText: "Load Authors Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }
