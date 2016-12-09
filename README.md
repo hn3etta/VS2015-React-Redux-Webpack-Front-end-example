@@ -50,7 +50,7 @@ I created this example site for developers (like myself) that enjoy coding in Vi
     start without debugging (Cntr+F5)
 12. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
 
-Then visit `localhost:3000` in your browser if your browser didn't already fire up.
+Then visit `127.0.0.1:3000` in your browser if your browser didn't already fire up.
 
 
 ### Test Drive the Example Site
@@ -76,7 +76,8 @@ Per the instructions on the login screen, login with a Username of "test@test.co
 >**Courses**
 
 Now that you successfully logged in, you should see "Courses" and "Open Courses" next to the "Home" navigational element.  Go ahead and navigate to "Courses".
-Here you can add, edit and delete courses.  This is pretty much the same functionality from the PluralSight course, but I changed up the look and the React Component organization.  Also added animations (GreenSock.js) for the sidebar slide in.
+Here you can add, edit and delete courses.  This is almost the same functionality from the PluralSight course, but I changed up the look and the React Component organization.
+I also added the ability to switch a coure's status from "open" to "closed".  This is used for the "Open Courses" simulator.  Also added animations (GreenSock.js) for the sidebar slide in.
 
 Try this out.  Reload the webpage while you are on the "Courses" page.  Notice that everything loaded and so did your authenticated session?  Your user authenticated store data was persisted to your browser's local storage via [Redux Persist](https://github.com/rt2zz/redux-persist).
 If you logged out and then manually went to the /courses page, you will notice that you are redirected to the login page and if you logged in successfully you would be returned to the Courses page.
