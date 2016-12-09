@@ -29,27 +29,26 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 
 ### Running the Example Locally
 
-01. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
+1. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
     and https://github.com/hn3etta/VS2015-React-Redux-Webpack-Back-end-example to the same location
-02.
-03. Make sure Visual Studio 2015 has update 3 installed
-04. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
-05. Install Node.js Tools for Visual Studio
-06. Install Visual Studio extension WebPack Task Runner
-07. Install Visual Studio extension NPM Task Runner
-08. In Visual Studio, open the VS2015-frontend-example.sln file
-09. Right click on VS2015-frontend-example project and select Properties.
+2. Make sure Visual Studio 2015 has update 3 installed (still working on VS2015 Community support)
+3. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
+4. Install Node.js Tools for Visual Studio
+5. Install Visual Studio extension WebPack Task Runner
+6. Install Visual Studio extension NPM Task Runner
+7. In Visual Studio, open the VS2015-frontend-example.sln file
+8. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
-10. Right click on the VS2015-frontend-example's npm package property and 
+9. Right click on the VS2015-frontend-example's npm package property and 
     select "Install Missing npm Packages"
-11. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
+10. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
     (https://github.com/sass/node-sass-binaries) into the node-sass vendor directory.
 	Create a directory called "win32-ia32-47" inside of the node-sass vendor directory
 	and drop the binding node "win32-ia32-47_binding.node" in there and rename to "binding.node".
 	within node_modules.  Needed since Node Tools for Visual Studio runs in 32bit mode 
-12. Right click on VS2015-backend-example project and select "Set as Startup Project" then
+11. Right click on VS2015-backend-example project and select "Set as Startup Project" then
     start without debugging (Cntr+F5)
-13. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
+12. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
 
 Then visit `localhost:3000` in your browser if your browser didn't already fire up.
 
