@@ -100,13 +100,10 @@ Just like the course, everything starts at the index.js file in the /src directo
 
 Still need to work on the following
 
-01. Fix error handling if openCourseActions’s saveOpenCourse function fails on a new openCourse entry.  Might need to create a container for openCourses List
-02. Fix modal brief display on CoursesPage when component mounts.  Need to work on Greensock timeline setup
-03. Add course “Title” to the “Open Course Settings” modal form
-04. Change approach for action mutations to reducer?  Smaller data objects sent to reducers for merging with state?
-05. Add logic to handle session timeouts while within the applcation (auth checks only occuring on state persist loading for page loads).
-06. Add logic for localization
-07. Complete all of the unit tests for the components
+01. Fix open course modal pausing (Greensock)
+02. Add logic to handle session timeouts while within the applcation (auth checks only occuring on state persist loading for page loads).
+03. Add logic for localization
+04. Complete all of the unit tests for the components
 
 
 ### License

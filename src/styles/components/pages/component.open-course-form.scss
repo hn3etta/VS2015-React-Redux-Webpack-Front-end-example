@@ -1,6 +1,7 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
 .open-course-form__title,
+.open-course-form__course-name-cntr__label,
 .open-course-form__status-label,
 .open-course-form__attendees-label {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -15,11 +16,15 @@
     padding-bottom: 15px;
 }
 
+.open-course-form__course-name-cntr__label,
 .open-course-form__status-label,
 .open-course-form__attendees-label {
+    display: block;
     font-size: $font-size-sml;
+    padding-bottom: 5px;
 }
 
+.open-course-form__course-name-cntr__title,
 .open-course-form__status-open,
 .open-course-form__status-closed,
 .open-course-form__attendees-input,

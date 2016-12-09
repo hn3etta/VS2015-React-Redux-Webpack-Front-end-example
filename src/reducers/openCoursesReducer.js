@@ -18,9 +18,9 @@ export default function openCoursesReducer(state = initialState, action) {
                     openCoursesCntr.set("allOpenCourses", openCoursesCntr
                                                              .get("allOpenCourses")
                                                              .map(openCourseCntr => {
-                                                                 if (openCourseCntr.get("openCourse").get("id") == action.updatedOpenCourseCntr.immtblOpenCourse.get("id")) {
+                                                                 if (openCourseCntr.get("openCourse").get("id") == action.updatedOpenCourseCntr.openCourse.get("id")) {
                                                                      return openCourseCntr.set("openCourse", openCourseCntr.get("openCourse")
-                                                                                                                           .merge(action.updatedOpenCourseCntr.immtblOpenCourse))
+                                                                                                                           .merge(action.updatedOpenCourseCntr.openCourse))
                                                                                           .set("statusText", action.updatedOpenCourseCntr.statusText)
                                                                                           .set("ajaxStart", action.updatedOpenCourseCntr.ajaxStart)
                                                                                           .set("ajaxEnd", action.updatedOpenCourseCntr.ajaxEnd);
@@ -34,7 +34,7 @@ export default function openCoursesReducer(state = initialState, action) {
                 openCoursesCntr: state.openCoursesCntr.withMutations(openCoursesCntr => {
                     openCoursesCntr.set("allOpenCourses", openCoursesCntr
                                                              .get("allOpenCourses")
-                                                             .push(initialOpenCourseCntr.openCourseCntr.set("openCourse", action.newOpenCourseCntr.immtblOpenCourse)
+                                                             .push(initialOpenCourseCntr.openCourseCntr.set("openCourse", action.newOpenCourseCntr.openCourse)
                                                                                                        .set("courseName", action.newOpenCourseCntr.courseName)
                                                                                                        .set("statusText", action.newOpenCourseCntr.statusText)
                                                                                                        .set("ajaxStart", action.newOpenCourseCntr.ajaxStart)
