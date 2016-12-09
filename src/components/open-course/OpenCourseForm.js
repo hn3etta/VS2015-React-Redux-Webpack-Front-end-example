@@ -43,6 +43,11 @@ class OpenCourseForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         // Course status click change detected
         if (typeof nextProps.openCourseModal.get("courseId") == "number") {
+            // Skip state update if Ajax progress true
+            if (nextProps.loading) {
+                return;
+            }
+
             // Determine if the last data pull for OpenCourses has the "clicked" course status id in it
             let openCourseMatch = nextProps.immtblOpenCoursesList.find(ocCntr => ocCntr.get("openCourse").get("courseId") == nextProps.openCourseModal.get("courseId"));
 
