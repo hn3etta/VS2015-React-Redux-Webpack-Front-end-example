@@ -109,18 +109,20 @@ export function saveOpenCourse(openCourse) {
 
               // If openCourse entry exists then dispatch an update
               if (immtblOpenCourseCntr) {
+                  // Dispatch save open courses success with a temporary object
                   dispatch(updateOpenCourseSuccess(
                       {
-                          immtblOpenCourse: immtblUpdtdOpenCourse,
+                          openCourse: immtblUpdtdOpenCourse,
                           statusText: '',
                           ajaxStart: ajaxStartDT,
                           ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
                       }
                   ));
               } else {
+                  // Dispatch new open courses success with a temporary object
                   dispatch(updateOpenCourseNewSuccess(
                       {
-                          immtblOpenCourse: immtblUpdtdOpenCourse,
+                          openCourse: immtblUpdtdOpenCourse,
                           courseName: getCourseName(openCourse.courseId, getState().coursesReducer.coursesCntr.get("allCourses")),
                           statusText: '',
                           ajaxStart: ajaxStartDT,
@@ -136,6 +138,7 @@ export function saveOpenCourse(openCourse) {
               let immtblOpenCourseCntr = allOpenCoursesList.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourse.id);
 
               if (immtblOpenCourseCntr) {
+                  // Dispatch open course save error with a temporary object
                   dispatch(updateOpenCourseError(
                       {
                           openCourseId: openCourse.id,
@@ -145,6 +148,7 @@ export function saveOpenCourse(openCourse) {
                       }
                   ));
               } else {
+                  // Dispatch new open course error with a temporary object
                   dispatch(createOpenCourseError(
                       {
                           statusText: "Create Open Course Error: " + error.message,
@@ -175,11 +179,13 @@ export function deleteOpenCourse(id, courseId) {
             }
         }).then(checkHttpStatus)
           .then(response => {
+              // Dispatch close open course modal, delete open course success and change course to closed
               dispatch(closeCourseIsOpenFormScreen());
               dispatch(deleteOpenCourseSuccess(id));
               dispatch(updateCourseIsClosed(courseId));
           })
           .catch(error => {
+              // Dispatch open course delete error with a temporary object
               dispatch(deleteOpenCourseError(
                   {
                       openCourseId: id,
@@ -213,7 +219,7 @@ export function loadOpenCourses() {
           .then(response => {
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
 
-              // New immutable list of open courses
+              // Dispatch open courses success with a temporary object
               dispatch(loadOpenCoursesSuccess(
                   {
                       allOpenCourses: List(response.map(openCourse => {
@@ -231,7 +237,7 @@ export function loadOpenCourses() {
               ));
           })
           .catch(error => {
-              // New immutable lit with one open course container for holding the error info
+              // Dispatch open courses error with a temporary object
               dispatch(loadOpenCoursesError(
                   {
                       statusText: "Create Open Course Error: " + error.message,
@@ -265,6 +271,7 @@ export function refreshOpenCourse(openCourseId) {
               let ocMapObj = Map(response);
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
 
+              // Dispatch open course refresh success with a temporary object
               dispatch(updatedOpenCourseSuccess(
                   {
                       openCourse: Map(response),
@@ -280,6 +287,7 @@ export function refreshOpenCourse(openCourseId) {
           .catch(error => {
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
 
+              // Dispatch open course refresh error with a temporary object
               dispatch(updatedOpenCourseError(
                   {
                       openCourseId,

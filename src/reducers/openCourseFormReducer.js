@@ -17,7 +17,6 @@ export default function openCourseFormReducer(state = initialState, action) {
         case types.CLOSE_COURSE_IS_OPEN_SCREEN:
             return {
                 modalData: state.modalData
-                    .set("courseId", "")
                     .set("open", false)
             };
     }
