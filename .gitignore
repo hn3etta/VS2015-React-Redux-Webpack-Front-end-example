@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+npm-debug.log.*
 
 # Runtime data
 pids
@@ -37,3 +38,7 @@ dist
 typings/globals/node/index.d.ts
 typings/globals/node/typings.json
 typings/index.d.ts
+
+# ignore VS2015 configurations
+.vs
+typings/

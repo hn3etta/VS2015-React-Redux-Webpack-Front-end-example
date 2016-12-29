@@ -31,7 +31,7 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 
 01. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
     and https://github.com/hn3etta/VS2015-React-Redux-Webpack-Back-end-example to the same location
-02.
+02. Make sure .NET Core 1.0.1 is installed from https://www.microsoft.com/net/core#windowsvs2015
 03. Make sure Visual Studio 2015 has update 3 installed
 04. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
 05. Install Node.js Tools for Visual Studio
