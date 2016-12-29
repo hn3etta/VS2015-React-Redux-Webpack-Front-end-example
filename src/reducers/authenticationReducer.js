@@ -21,15 +21,15 @@ export default function authenticationReducers(state = initialState, action) {
                        .set("authExpiresIn", action.updatedUsr.authExpiresIn)
                        .set("statusText", action.updatedUsr.statusText)
                        .set("ajaxStart", action.updatedUsr.ajaxStart)
-                       .set("ajaxEnd", action.updatedUsr.ajaxEnd)
-                }) 
-            }
+                       .set("ajaxEnd", action.updatedUsr.ajaxEnd);
+                })
+            };
         case types.AUTHENTICATION_ERROR:
             return {
                 user: state.user.withMutations(usr => {
                     usr.set("statusText", action.errorUsr.statusText)
                        .set("ajaxStart", action.errorUsr.ajaxStart)
-                       .set("ajaxEnd", action.errorUsr.ajaxEnd)
+                       .set("ajaxEnd", action.errorUsr.ajaxEnd);
                 }) 
             };
         case types.USER_LOGGED_OFF:
