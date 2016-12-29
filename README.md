@@ -29,16 +29,16 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 
 ### Running the Example Locally
 
-01. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
+1. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
     and https://github.com/hn3etta/VS2015-React-Redux-Webpack-Back-end-example to the same location
-02. Make sure .NET Core 1.0.1 is installed from https://www.microsoft.com/net/core#windowsvs2015
-03. Make sure Visual Studio 2015 has update 3 installed
-04. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
-05. Install Node.js Tools for Visual Studio
-06. Install Visual Studio extension WebPack Task Runner
-07. Install Visual Studio extension NPM Task Runner
-08. In Visual Studio, open the VS2015-frontend-example.sln file
-09. Right click on VS2015-frontend-example project and select Properties.
+2. Make sure .NET Core 1.0.1 is installed from https://www.microsoft.com/net/core#windowsvs2015
+3. Make sure Visual Studio 2015 has update 3 installed
+4. Install Node.js 6.9.1 to a root directory (example: C:\Node6)
+5. Install Node.js Tools for Visual Studio
+6. Install Visual Studio extension WebPack Task Runner
+7. Install Visual Studio extension NPM Task Runner
+8. In Visual Studio, open the VS2015-frontend-example.sln file
+9. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
 10. Right click on the VS2015-frontend-example's npm package property and 
     select "Install Missing npm Packages"
@@ -51,7 +51,7 @@ I created this example site for developers (like myself) that enjoy coding in Vi
     start without debugging (Cntr+F5)
 13. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".
 
-Then visit `localhost:3000` in your browser if your browser didn't already fire up.
+Then visit `127.0.0.1:3000` in your browser if your browser didn't already fire up.
 
 
 ### Test Drive the Example Site
@@ -77,7 +77,8 @@ Per the instructions on the login screen, login with a Username of "test@test.co
 >**Courses**
 
 Now that you successfully logged in, you should see "Courses" and "Open Courses" next to the "Home" navigational element.  Go ahead and navigate to "Courses".
-Here you can add, edit and delete courses.  This is pretty much the same functionality from the PluralSight course, but I changed up the look and the React Component organization.  Also added animations (GreenSock.js) for the sidebar slide in.
+Here you can add, edit and delete courses.  This is almost the same functionality from the PluralSight course, but I changed up the look and the React Component organization.
+I also added the ability to switch a coure's status from "open" to "closed".  This is used for the "Open Courses" simulator.  Also added animations (GreenSock.js) for the sidebar slide in.
 
 Try this out.  Reload the webpage while you are on the "Courses" page.  Notice that everything loaded and so did your authenticated session?  Your user authenticated store data was persisted to your browser's local storage via [Redux Persist](https://github.com/rt2zz/redux-persist).
 If you logged out and then manually went to the /courses page, you will notice that you are redirected to the login page and if you logged in successfully you would be returned to the Courses page.
@@ -100,13 +101,10 @@ Just like the course, everything starts at the index.js file in the /src directo
 
 Still need to work on the following
 
-01. Fix error handling if openCourseActions’s saveOpenCourse function fails on a new openCourse entry.  Might need to create a container for openCourses List
-02. Fix modal brief display on CoursesPage when component mounts.  Need to work on Greensock timeline setup
-03. Add course “Title” to the “Open Course Settings” modal form
-04. Change approach for action mutations to reducer?  Smaller data objects sent to reducers for merging with state?
-05. Add logic to handle session timeouts while within the applcation (auth checks only occuring on state persist loading for page loads).
-06. Add logic for localization
-07. Complete all of the unit tests for the components
+01. Fix open course modal pausing (Greensock)
+02. Add logic to handle session timeouts while within the applcation (auth checks only occuring on state persist loading for page loads).
+03. Add logic for localization
+04. Complete all of the unit tests for the components
 
 
 ### License

@@ -167,7 +167,7 @@ class OpenCoursesPage extends React.Component {
         });
 
         // Send synchronous action for open course updating
-        this.props.openCourseActions.openCourseIsUpdating(openCourseId);
+        this.props.openCourseActions.internalUpdateOpenCourseIsUpdating(openCourseId);
 
         // Send asynchronous action to trigger AJAX update for the open course
         this.props.openCourseActions.refreshOpenCourse(openCourseId);
@@ -190,7 +190,7 @@ class OpenCoursesPage extends React.Component {
         });
 
         // Send synchronous action for changing open course's seconds value
-        this.props.openCourseActions.changeOpenCourseRefreshSecs(openCourseId, newSeconds);
+        this.props.openCourseActions.internalUpdateOpenCourseSecs({ openCourseId, seconds: newSeconds });
     }
 
     render() {
@@ -238,7 +238,7 @@ function mapStateToProps(state, ownProps) {
     return {
         immtblUsr: state.authReducer.user,
         immtblCoursesList: state.coursesReducer.coursesCntr.get("allCourses"),
-        immtblOpenCoursesList: state.openCoursesReducer
+        immtblOpenCoursesList: state.openCoursesReducer.openCoursesCntr.get("allOpenCourses")
     };
 }
 

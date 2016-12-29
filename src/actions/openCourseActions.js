@@ -13,20 +13,23 @@ import {updateCourseIsOpen, updateCourseIsClosed} from './courseActions';
 import {closeCourseIsOpenFormScreen} from './openCourseFormActions';
 // Utilities/Settings
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
-import {getCourseName} from '../utilities/openCourseUtilities';
-import {sortByCourseName} from '../utilities/openCourseUtilities';
+import {getCourseName, sortByCourseName} from '../utilities/openCourseUtilities';
 
 /* Actions for Open Course edits */
-export function updateOpenCourseSuccess(immtblOpenCourseCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_SUCCESS, immtblOpenCourseCntr };
+export function updateOpenCourseSuccess(updatedOpenCourseCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_SUCCESS, updatedOpenCourseCntr };
 }
 
-export function updateOpenCourseNewSuccess(immtblOpenCourseCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS, immtblOpenCourseCntr };
+export function updateOpenCourseNewSuccess(newOpenCourseCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS, newOpenCourseCntr };
 }
 
-export function updateOpenCourseError(immtblOpenCourseCntr) {
-    return { type: types.UPDATE_COURSE_IS_OPEN_ERROR, immtblOpenCourseCntr };
+export function updateOpenCourseError(updatedOpenCourseErrorCntr) {
+    return { type: types.UPDATE_COURSE_IS_OPEN_ERROR, updatedOpenCourseErrorCntr };
+}
+
+export function createOpenCourseError(createOpenCourseErrorCntr) {
+    return { type: types.CREATE_COURSE_IS_OPEN_ERROR, createOpenCourseErrorCntr };
 }
 
 export function courseNameChangeOccurred(courseNameChange) {
@@ -37,64 +40,45 @@ export function deleteOpenCourseSuccess(id) {
     return { type: types.DELETE_COURSE_IS_OPEN_SUCCESS, id };
 }
 
-export function deleteOpenCourseError(immtblOpenCourseCntr) {
-    return { type: types.DELETE_COURSE_IS_OPEN_ERROR, immtblOpenCourseCntr };
+export function deleteOpenCourseError(deleteOpenCourseErrorCntr) {
+    return { type: types.DELETE_COURSE_IS_OPEN_ERROR, deleteOpenCourseErrorCntr };
+}
+
+export function courseDeleted(courseId) {
+    return { type: types.COURSE_DELETED_CLEAR_OPEN_COURSE, courseId };
 }
 
 /* Actions for Open Course status screen (simulator) */
-export function loadOpenCoursesSuccess(immtblOpenCoursesList) {
-    return { type: types.LOAD_OPEN_COURSES_SUCCESS, immtblOpenCoursesList };
+export function loadOpenCoursesSuccess(allOpenCoursesCntr) {
+    return { type: types.LOAD_OPEN_COURSES_SUCCESS, allOpenCoursesCntr };
 }
 
-export function loadOpenCoursesError(immtblOpenCoursesList) {
-    return { type: types.LOAD_OPEN_COURSES_ERROR, immtblOpenCoursesList };
+export function loadOpenCoursesError(allOpenCoursesErrorCntr) {
+    return { type: types.LOAD_OPEN_COURSES_ERROR, allOpenCoursesErrorCntr };
 }
 
 export function internalUpdateOpenCourseMsg() {
     return { type: types.INTERNALLY_OPEN_COURSE_UPDATE_MSG };
 }
 
-export function internalUpdateOpenCourseSecs(immtblOpenCourseCntr) {
-    return { type: types.INTERNALLY_OPEN_COURSE_UPDATE_SECS, immtblOpenCourseCntr };
+export function internalUpdateOpenCourseSecs(openCourseIdAndSecs) {
+    return { type: types.INTERNALLY_OPEN_COURSE_UPDATE_SECS, openCourseIdAndSecs };
 }
 
-export function internalUpdateOpenCourseIsUpdating(immtblOpenCourseCntr) {
-    return { type: types.INTERNALLY_OPEN_COURSE_IS_UPDATING, immtblOpenCourseCntr };
+export function internalUpdateOpenCourseIsUpdating(openCourseId) {
+    return { type: types.INTERNALLY_OPEN_COURSE_IS_UPDATING, openCourseId };
 }
 
-export function updatedOpenCourseSuccess(immtblOpenCourseCntr) {
-    return { type: types.UPDATED_OPEN_COURSE_SUCCESS, immtblOpenCourseCntr };
+export function updatedOpenCourseSuccess(openCourseCntrUpdated) {
+    return { type: types.UPDATED_OPEN_COURSE_SUCCESS, openCourseCntrUpdated };
 }
 
-export function updatedOpenCourseError(immtblOpenCourseCntr) {
-    return { type: types.UPDATED_OPEN_COURSE_ERROR, immtblOpenCourseCntr };
+export function updatedOpenCourseError(openCourseCntrUpdateError) {
+    return { type: types.UPDATED_OPEN_COURSE_ERROR, openCourseCntrUpdateError };
 }
 
-/* Synchronous Action Thunks */
-export function changeOpenCourseRefreshSecs(openCourseId, seconds) {
-    return function (dispatch, getState) {
-        let openCourseCntrArr = getState().openCoursesReducer.filter(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourseId);
-
-        if (openCourseCntrArr.size > 0) {
-            // Send specific Open Course's container object with changes
-            dispatch(internalUpdateOpenCourseSecs(openCourseCntrArr.get(0).set("refreshSeconds", seconds)));
-        }
-    };
-}
-
-export function openCourseIsUpdating(openCourseId) {
-    return function (dispatch, getState) {
-        let openCourseCntrArr = getState().openCoursesReducer.filter(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourseId);
-
-        if (openCourseCntrArr.size > 0) {
-            // Send specific Open Course's container object with changes
-            dispatch(internalUpdateOpenCourseIsUpdating(openCourseCntrArr.get(0).set("updating", true)));
-        }
-    };
-}
 
 /* Asynchronous Action Thunks */
-
 export function saveOpenCourse(openCourse) {
     return function (dispatch, getState) {
         dispatch(beginAjaxCall());
@@ -116,35 +100,62 @@ export function saveOpenCourse(openCourse) {
           .then(parseJSON)
           .then(response => {
               dispatch(closeCourseIsOpenFormScreen());
-              const immtblUpdtdOpenCourse = Map(response);
-              // Get the latest openCouresCntr from the store
-              let immtblOpenCoursesCntr = getState().openCoursesReducer.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == immtblUpdtdOpenCourse.get("id"));
 
-              // If openCourse entry exists then mutate copy
-              if (immtblOpenCoursesCntr) {
-                  dispatch(updateOpenCourseSuccess(immtblOpenCoursesCntr.set("openCourse", immtblUpdtdOpenCourse)
-                                                                        .set("statusText", "")
-                                                                        .set("ajaxStart", ajaxStartDT)
-                                                                        .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"))));
+              const immtblUpdtdOpenCourse = Map(response);
+              const allOpenCoursesList = getState().openCoursesReducer.openCoursesCntr.get("allOpenCourses");
+
+              // Search the openCoursesCntr store for this open course
+              let immtblOpenCourseCntr = allOpenCoursesList.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == immtblUpdtdOpenCourse.get("id"));
+
+              // If openCourse entry exists then dispatch an update
+              if (immtblOpenCourseCntr) {
+                  // Dispatch save open courses success with a temporary object
+                  dispatch(updateOpenCourseSuccess(
+                      {
+                          openCourse: immtblUpdtdOpenCourse,
+                          statusText: '',
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
               } else {
-                  dispatch(updateOpenCourseNewSuccess(initCntrState.openCourseCntr.set("openCourse", immtblUpdtdOpenCourse)
-                                                                                  .set("statusText", "")
-                                                                                  .set("courseName", getCourseName(openCourse.courseId, getState().coursesReducer.coursesCntr.get("allCourses")))
-                                                                                  .set("ajaxStart", ajaxStartDT)
-                                                                                  .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"))));
+                  // Dispatch new open courses success with a temporary object
+                  dispatch(updateOpenCourseNewSuccess(
+                      {
+                          openCourse: immtblUpdtdOpenCourse,
+                          courseName: getCourseName(openCourse.courseId, getState().coursesReducer.coursesCntr.get("allCourses")),
+                          statusText: '',
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
                   dispatch(updateCourseIsOpen(immtblUpdtdOpenCourse.get("courseId")));
               }              
           })
           .catch(error => {
-              let immtblOpenCoursesCntr = getState().openCoursesReducer.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourse.id);
+              const allOpenCoursesList = getState().openCoursesReducer.openCoursesCntr.get("allOpenCourses");
 
-              if (immtblOpenCoursesCntr) {
-                  dispatch(updateOpenCourseError(immtblOpenCoursesCntr.set("statusText", "Save Open Course Error: " + error.message)
-                                                                      .set("ajaxStart", ajaxStartDT)
-                                                                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"))));
+              let immtblOpenCourseCntr = allOpenCoursesList.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourse.id);
+
+              if (immtblOpenCourseCntr) {
+                  // Dispatch open course save error with a temporary object
+                  dispatch(updateOpenCourseError(
+                      {
+                          openCourseId: openCourse.id,
+                          statusText: "Save Open Course Error: " + error.message,
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
               } else {
-                  // !!! Todo !!!
-                  // How do I handle an UPSERT when the insert fails?  No openCourseCntr exists in the list.  Rework the list and create a parent container to house the error?
+                  // Dispatch new open course error with a temporary object
+                  dispatch(createOpenCourseError(
+                      {
+                          statusText: "Create Open Course Error: " + error.message,
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
               }
           });
     };
@@ -168,21 +179,21 @@ export function deleteOpenCourse(id, courseId) {
             }
         }).then(checkHttpStatus)
           .then(response => {
+              // Dispatch close open course modal, delete open course success and change course to closed
               dispatch(closeCourseIsOpenFormScreen());
               dispatch(deleteOpenCourseSuccess(id));
               dispatch(updateCourseIsClosed(courseId));
           })
           .catch(error => {
-              // Get the latest openCouresCntr from the store
-              let immtblOpenCoursesCntr = getState().openCoursesReducer.find(openCourseCntr => openCourseCntr.get("openCourse").get("id") == id);
-
-              if (immtblOpenCoursesCntr) {
-                  dispatch(deleteOpenCourseError(immtblOpenCoursesCntr.withMutations(mObj => {
-                      mObj.set("statusText", "Delete Course Error: " + error.message)
-                          .set("ajaxStart", ajaxStartDT)
-                          .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                  })));
-              }
+              // Dispatch open course delete error with a temporary object
+              dispatch(deleteOpenCourseError(
+                  {
+                      openCourseId: id,
+                      statusText: "Delete Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }
@@ -208,29 +219,31 @@ export function loadOpenCourses() {
           .then(response => {
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
 
-              // New immutable list of open courses
+              // Dispatch open courses success with a temporary object
               dispatch(loadOpenCoursesSuccess(
-                  List(response.map(ocObj => {
-                      // Convert plain open course object to Immutable Map object
-                      let ocMapObj = Map(ocObj);
-                      return initCntrState.openCourseCntr.set("openCourse", ocMapObj)
-                                                         .set("courseName", getCourseName(ocMapObj.get("courseId"), getState().coursesReducer.coursesCntr.get("allCourses")))
-                                                         .set("statusText", "")
-                                                         .set("ajaxStart", ajaxStartDT)
-                                                         .set("ajaxEnd", ajaxEndDT)
-                                                         .set("animateChart", true)
-                                                         .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow());
-                  }))
-                  .sort(sortByCourseName)
+                  {
+                      allOpenCourses: List(response.map(openCourse => {
+                          return initCntrState.openCourseCntr.set("openCourse", Map(openCourse))
+                                                             .set("courseName", getCourseName(openCourse.courseId, getState().coursesReducer.coursesCntr.get("allCourses")))
+                                                             .set("animateChart", true)
+                                                             .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow())
+                                                             .set("ajaxStart", ajaxStartDT)
+                                                             .set("ajaxEnd", ajaxEndDT);
+                      })),
+                      statusText: '',
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: ajaxEndDT
+                  }
               ));
           })
           .catch(error => {
-              // New immutable lit with one open course container for holding the error info
+              // Dispatch open courses error with a temporary object
               dispatch(loadOpenCoursesError(
-                  List().push(initCntrState.openCourseCntr.set("statusText", "Load Open Courses Error: " + error.message)
-                                                      .set("ajaxStart", ajaxStartDT)
-                                                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"))
-                  )
+                  {
+                      statusText: "Create Open Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
               ));
           });
     };
@@ -255,33 +268,36 @@ export function refreshOpenCourse(openCourseId) {
         }).then(checkHttpStatus)
           .then(parseJSON)
           .then(response => {
-              let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
               let ocMapObj = Map(response);
-              let openCourseCntrArr = getState().openCoursesReducer.filter(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourseId);
-              
-              if (openCourseCntrArr.size > 0) {
-                  // Change a specific Open Course's seconds
-                  dispatch(updatedOpenCourseSuccess(openCourseCntrArr.get(0).set("openCourse", ocMapObj)
-                                                                            .set("statusText", "")
-                                                                            .set("updating", false)
-                                                                            .set("ajaxStart", ajaxStartDT)
-                                                                            .set("ajaxEnd", ajaxEndDT)
-                                                                            .set("animateChart", true)
-                                                                            .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow())));
-              }
+              let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
+
+              // Dispatch open course refresh success with a temporary object
+              dispatch(updatedOpenCourseSuccess(
+                  {
+                      openCourse: Map(response),
+                      updating: false,
+                      animateChart: true,
+                      updatedMsg: moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow(),
+                      statusText: "",
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: ajaxEndDT
+                  }
+              ));
           })
           .catch(error => {
               let ajaxEndDT = moment().format("YYYY-MM-DD:HH:mm:ss.SSS");
-              let openCourseCntrArr = getState().openCoursesReducer.filter(openCourseCntr => openCourseCntr.get("openCourse").get("id") == openCourseId);
 
-              if (openCourseCntrArr.size > 0) {
-                  // Change a specific Open Course's seconds
-                  dispatch(updatedOpenCourseError(openCourseCntrArr.get(0).set("statusText", "Load Open Course Error: " + error.message)
-                                                                          .set("updating", false)
-                                                                          .set("ajaxStart", ajaxStartDT)
-                                                                          .set("ajaxEnd", ajaxEndDT)
-                                                                          .set("updatedMsg", moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow())));
-              }
+              // Dispatch open course refresh error with a temporary object
+              dispatch(updatedOpenCourseError(
+                  {
+                      openCourseId,
+                      updating: false,
+                      updatedMsg: moment(ajaxEndDT, "YYYY-MM-DD:HH:mm:ss.SSS").fromNow(),
+                      statusText: "Load Open Course Error: " + error.message,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: ajaxEndDT
+                  }
+              ));
           });
     };
 }

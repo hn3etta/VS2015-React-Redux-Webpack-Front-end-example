@@ -34,7 +34,7 @@
 
 .title-6,
 .col-6 {
-    width: 60px;
+    width: 75px;
 }
 
 .title-7,
@@ -95,6 +95,11 @@
 .col-5,
 .col-6 {
     align-items: center;
+}
+
+.course__edit-open-status,
+.course__edit-closed-status {
+    min-width: 55px;
 }
 
 .course__edit-open-status {
