@@ -14,12 +14,12 @@ import {loadOpenCourses} from './openCourseActions';
 import {checkHttpStatus, parseJSON} from '../utilities/apiUtilities';
 
 
-export function userAuthenticated(immtblUsr) {
-    return { type: types.USER_AUTHENTICATED, immtblUsr };
+export function userAuthenticated(updatedUsr) {
+    return { type: types.USER_AUTHENTICATED, updatedUsr };
 }
 
-export function userAuthenticationError(immtblUsr) {
-    return { type: types.AUTHENTICATION_ERROR, immtblUsr };
+export function userAuthenticationError(errorUsr) {
+    return { type: types.AUTHENTICATION_ERROR, errorUsr };
 }
 
 export function logoffUser() {
@@ -54,15 +54,17 @@ export function authenticateUser(username, password) {
                   jwtDecode(response.access_token);
 
                   // New immutable object setting token, authExpiresIn, isAuthenticated and ajaxEnd that is passed into the userAuthenticated action
-                  dispatch(userAuthenticated(getState().authReducer.user.withMutations(mObj => {
-                      mObj.set("username", username)
-                          .set("token", response.access_token)
-                          .set("authExpiresIn", response.expires_in)
-                          .set("isAuthenticated", true)
-                          .set("statusText", "")
-                          .set("ajaxStart", ajaxStartDT)
-                          .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                  })));
+                  dispatch(userAuthenticated(
+                      {
+                          username,
+                          token: response.access_token,
+                          authExpiresIn: response.expires_in,
+                          isAuthenticated: true,
+                          statusText: "",
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
 
                   // Load Authors, Courses and Counts
                   dispatch(loadAuthors());
@@ -70,11 +72,13 @@ export function authenticateUser(username, password) {
                   dispatch(loadOpenCourses());
               } catch (e) {
                   // New immutable object setting statusText that is passed into the userAuthenticationError action
-                  dispatch(userAuthenticationError(getState().authReducer.user.withMutations(mObj => {
-                      mObj.set("statusText", e.message)
-                          .set("ajaxStart", ajaxStartDT)
-                          .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-                  })));
+                  dispatch(userAuthenticationError(
+                      {
+                          statusText: "Auth Error: " + e.message,
+                          ajaxStart: ajaxStartDT,
+                          ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                      }
+                  ));
               }
           })
           .catch(error => {
@@ -85,11 +89,13 @@ export function authenticateUser(username, password) {
               }
 
               // New immutable object setting statusText that is passed into the userAuthenticationError action
-              dispatch(userAuthenticationError(getState().authReducer.user.withMutations(mObj => {
-                  mObj.set("statusText", errMsg)
-                      .set("ajaxStart", ajaxStartDT)
-                      .set("ajaxEnd", moment().format("YYYY-MM-DD:HH:mm:ss.SSS"));
-              })));
+              dispatch(userAuthenticationError(
+                  {
+                      statusText: errMsg,
+                      ajaxStart: ajaxStartDT,
+                      ajaxEnd: moment().format("YYYY-MM-DD:HH:mm:ss.SSS")
+                  }
+              ));
           });
     };
 }

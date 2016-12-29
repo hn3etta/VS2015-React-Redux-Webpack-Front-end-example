@@ -29,6 +29,7 @@ class OpenCourseForm extends React.Component {
         this.state = {
             open: false,
             openCourse: Object.assign({}, initOpenCourse),
+            courseName: "",
             errors: {}
         };
 
@@ -42,6 +43,11 @@ class OpenCourseForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         // Course status click change detected
         if (typeof nextProps.openCourseModal.get("courseId") == "number") {
+            // Skip state update if Ajax progress true
+            if (nextProps.loading) {
+                return;
+            }
+
             // Determine if the last data pull for OpenCourses has the "clicked" course status id in it
             let openCourseMatch = nextProps.immtblOpenCoursesList.find(ocCntr => ocCntr.get("openCourse").get("courseId") == nextProps.openCourseModal.get("courseId"));
 
@@ -50,7 +56,8 @@ class OpenCourseForm extends React.Component {
                 openCourse.id = openCourseMatch.get("openCourse").get("id");
                 openCourse.courseId = openCourseMatch.get("openCourse").get("courseId");
                 openCourse.maxAttendees = openCourseMatch.get("openCourse").get("maxAttendees");
-                this.setState({ openCourse, open: true });
+                const courseName = openCourseMatch.get("courseName");
+                this.setState({ openCourse, courseName, open: true });
             } else {
                 this.setState({ openCourse: initOpenCourse, open: false });
             }
@@ -96,7 +103,9 @@ class OpenCourseForm extends React.Component {
             this.props.openCourseActions.saveOpenCourse(Object.assign({}, this.state.openCourse, { courseId: this.props.openCourseModal.get("courseId") }));
         } else {
             // Find the current openCourseCntr (that has the openCourse id) that matches the current openCourse modal courseId
-            let openCourseCntr = this.props.immtblOpenCoursesList.find(openCourseCntr => openCourseCntr.get("openCourse").get("courseId") == this.props.openCourseModal.get("courseId"));
+            let openCourseCntr = this.props.immtblOpenCoursesList.find(
+                openCourseCntr => openCourseCntr.get("openCourse").get("courseId") == this.props.openCourseModal.get("courseId")
+            );
             this.props.openCourseActions.deleteOpenCourse(openCourseCntr.get("openCourse").get("id"), openCourseCntr.get("openCourse").get("courseId"));
         }
     }
@@ -114,7 +123,14 @@ class OpenCourseForm extends React.Component {
                 <h1 className="open-course-form__title">
                     Open Course Settings
                 </h1>
-
+                <div className="open-course-form__course-name-cntr">
+                    <div className="open-course-form__course-name-cntr__label">
+                        Course Title
+                    </div>
+                    <div className="open-course-form__course-name-cntr__title">
+                        {this.state.courseName}
+                    </div>
+                </div>
                 <BooleanLinks
                     containerCssClass="open-course-form__input-cntr"
                     labelCssClass="open-course-form__status-label"
@@ -173,7 +189,7 @@ OpenCourseForm.propTypes = {
 function mapStateToProps(state, ownProps) {
     return {
         openCourseModal: state.openCourseFormReducer.modalData,
-        immtblOpenCoursesList: state.openCoursesReducer,
+        immtblOpenCoursesList: state.openCoursesReducer.openCoursesCntr.get("allOpenCourses"),
         loading: state.ajaxCallsReducer.ajaxCallsInProgress > 0
     };
 }

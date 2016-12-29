@@ -4,16 +4,14 @@
     margin-top: 30px;
 }
 
-.open-course-form__input-cntr {
+.open-course-form__input-cntr,
+.open-course-form__course-name-cntr {
     margin-top: 20px;
 }
 
-.open-course-form__title-input,
-.open-course-form__author-select,
-.open-course-form__category-input,
-.open-course-form__length-input,
-.open-course-form__watchHref-input {
-    margin-top: 5px;
+.open-course-form__course-name-cntr__title,
+.open-course-form__attendees-input {
+    margin-left: 10px;
 }
 
 .open-course-form__button-cntr,

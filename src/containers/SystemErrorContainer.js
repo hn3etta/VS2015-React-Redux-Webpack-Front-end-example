@@ -145,7 +145,8 @@ function mapStateToProps(state) {
         ajaxStatusCntrs: [
             state.authorsReducer.authorsCntr,
             state.coursesReducer.coursesCntr,
-            ...state.openCoursesReducer.toArray()
+            state.openCoursesReducer.openCoursesCntr,
+            ...state.openCoursesReducer.openCoursesCntr.get("allOpenCourses").toArray()
         ]
     };
 }

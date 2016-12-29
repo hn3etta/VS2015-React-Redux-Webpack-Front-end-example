@@ -6,16 +6,21 @@ let React = require('react');
 let ReactDOM = require('react-dom');
 let PropTypes = React.PropTypes;
 let TweenLite = require('gsap').TweenLite;
+let TimelineLite = require('gsap').TimelineLite;
 
 class SideModal extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.determineModalDisplay = this.determineModalDisplay.bind(this);
+        this.animMngrObj = {};
     }
 
     componentDidMount() {
-        this.determineModalDisplay();
+        let sideModalElm = ReactDOM.findDOMNode(this.refs.sideModalCntr);
+
+        this.animMngrObj = this.loadGSTimeline(TimelineLite, TweenLite, this.props.location, sideModalElm);
+
+        this.determineModalDisplay(this.props.isOpen, this.animMngrObj);
     }
 
     /* React lifecycle function - exeuctes when props or state changes detected.  Here you can determine if the component needs to re-render or not */
@@ -28,40 +33,37 @@ class SideModal extends React.Component {
     }
 
     componentDidUpdate() {      
-        this.determineModalDisplay();
+        let sideModalElm = ReactDOM.findDOMNode(this.refs.sideModalCntr);
+
+        this.determineModalDisplay(this.props.isOpen, this.animMngrObj);
     }
 
-    determineModalDisplay() {
-        let sideModalCntr = ReactDOM.findDOMNode(this.refs.sideModalCntr);
+    loadGSTimeline(TimelineLite, TweenLite, location, animElement) {
+        const loc = location ? location : "left";
 
-        // Animate modal display
-        switch (this.props.location) {
-            case "right":
-                this.animateRightDisplay(this.props.isOpen, sideModalCntr, TweenLite);
-                break;
+        let animMngr = { tl: new TimelineLite() };
+
+        switch (loc) {
             case "left":
-            default:
-                this.animateLeftDisplay(this.props.isOpen, sideModalCntr, TweenLite);
+                animMngr.tl.add(TweenLite.from(animElement, 0.5, { x: -500, opacity: 0, zIndex: 0 }));
+                animMngr.tl.add(TweenLite.to(animElement, 0.5, { x: 0, opacity: 1, delay: 0.20 }));
+                animMngr.tl.add(TweenLite.to(animElement, 0.5, { zIndex: 1, delay: 0.30 }));
+                break;
+            case "right":
+                animMngr.tl.add(TweenLite.from(animElement, 0.5, { x: 300, opacity: 0, zIndex: 0 }));
+                animMngr.tl.add(TweenLite.to(animElement, 0.5, { x: 0, opacity: 1, delay: 0.20 }));
+                animMngr.tl.add(TweenLite.to(animElement, 0.5, { zIndex: 1, delay: 0.30 }));
                 break;
         }
 
+        return animMngr;
     }
 
-    animateLeftDisplay(isOpen, element, TweenLite) {
+    determineModalDisplay(isOpen, animMngrObj) {
         if (isOpen) {
-            // slide in from the left and fade in
-            TweenLite.fromTo(element, 0.5, { x: -1000, opacity: 0, zIndex: 0 }, { x: 0, opacity: 1, zIndex: 1 });
+            animMngrObj.tl.play();            
         } else {
-            TweenLite.fromTo(element, 0.5, { x: 0, opacity: 1, zIndex: 1 }, { x: -1000, opacity: 0, zIndex: -1 });
-        }
-    }
-
-    animateRightDisplay(isOpen, element, TweenLite) {
-        if (isOpen) {
-            // slide in from the right and fade in
-            TweenLite.fromTo(element, 0.5, { x: 1000, opacity: 0, zIndex: 0 }, { x: 0, opacity: 1, zIndex: 1 });
-        } else {
-            TweenLite.fromTo(element, 0.5, { x: 0, opacity: 1, zIndex: 1 }, { x: 1000, opacity: 0, zIndex: -1 });
+            animMngrObj.tl.reverse();
         }
     }
 
