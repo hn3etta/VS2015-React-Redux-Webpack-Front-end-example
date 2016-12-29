@@ -27,7 +27,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                  }
                                                                  return openCourseCntr;
                                                              })
-                )})
+                );})
             };
         case types.UPDATE_COURSE_IS_OPEN_NEW_SUCCESS:
             return {
@@ -39,7 +39,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                                                        .set("statusText", action.newOpenCourseCntr.statusText)
                                                                                                        .set("ajaxStart", action.newOpenCourseCntr.ajaxStart)
                                                                                                        .set("ajaxEnd", action.newOpenCourseCntr.ajaxEnd))
-                                                             .sort(sortByCourseName))
+                                                             .sort(sortByCourseName));
                 })
             };
         case types.UPDATE_COURSE_IS_OPEN_ERROR:
@@ -102,7 +102,7 @@ export default function openCoursesReducer(state = initialState, action) {
                             }
                             return openCourseCntr;
                         })
-                    )
+                    );
                 })
             };
         case types.COURSE_DELETED_CLEAR_OPEN_COURSE:
@@ -162,7 +162,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                  }
                                                                  return openCourseCntr.set("animateChart", false);
                                                              })
-                    )
+                    );
                 })
             };
         case types.INTERNALLY_OPEN_COURSE_IS_UPDATING:
@@ -178,7 +178,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                  }
                                                                  return openCourseCntr.set("animateChart", false);
                                                              })
-                )})
+                );})
             };
         case types.UPDATED_OPEN_COURSE_SUCCESS:
             return {
@@ -192,7 +192,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                  }
                                                                  return openCourseCntr.set("animateChart", false);
                                                              })
-                    )
+                    );
                 })
             };
         case types.UPDATED_OPEN_COURSE_ERROR:
@@ -211,7 +211,7 @@ export default function openCoursesReducer(state = initialState, action) {
                                                                  }
                                                                  return openCourseCntr.set("animateChart", false);
                                                              })
-                    )
+                    );
                 })
             };
         default:
