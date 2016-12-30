@@ -40,5 +40,5 @@ typings/globals/node/typings.json
 typings/index.d.ts
 
 # ignore VS2015 configurations
-.vs
+.vs/
 typings/
