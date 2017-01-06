@@ -27,7 +27,7 @@ const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, s
                             Updating...
                         </p>
                     </div>
-                    <div className="oc-item-main__status__background"></div>
+                    <div className="oc-item-main__status__background" />
                 </div>
                 <div className="oc-item-main__container">
                     <div className="oc-item-main__left">
@@ -43,8 +43,7 @@ const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, s
                                     <div className="oc-data-value">
                                         {immtblOpenCourse.get("attendees")}
                                     </div>
-                                    <div className="oc-data-edit">
-                                    </div>
+                                    <div className="oc-data-edit" />
                                 </div>
                             </div>
                         </div>
@@ -61,8 +60,7 @@ const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, s
                                     <div className="oc-data-value">
                                         {immtblOpenCourse.get("maxAttendees") - immtblOpenCourse.get("attendees")}
                                     </div>
-                                    <div className="oc-data-edit">
-                                    </div>
+                                    <div className="oc-data-edit" />
                                 </div>
                             </div>
                         </div>
@@ -79,8 +77,7 @@ const OpenClassTile = ({attendeeIcon, emptyDeskIcon, maxAttendeeIcon, addIcon, s
                                     <div className="oc-data-value">
                                         {immtblOpenCourse.get("maxAttendees")}
                                     </div>
-                                    <div className="oc-data-edit">
-                                    </div>
+                                    <div className="oc-data-edit" />
                                 </div>
                             </div>
                         </div>

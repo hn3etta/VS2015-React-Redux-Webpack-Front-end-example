@@ -113,7 +113,7 @@ const CourseForm = ({ course, allAuthors, onAction, onChange, loading, errors, o
                     className={getCSSClasses(loading)}
                     onClick={onAction}>
                     {getMessage(addMode, loading)}
-                    {loading && <div className="busyAnimation"></div>}
+                    {loading && <div className="busyAnimation" />}
                 </a>
 
                 <a href="#"

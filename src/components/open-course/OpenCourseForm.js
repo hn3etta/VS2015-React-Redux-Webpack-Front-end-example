@@ -163,7 +163,7 @@ class OpenCourseForm extends React.Component {
                         className="open-course-form__save-btn"
                         onClick={this.openCourseStatusChangeSave}>
                         {this.props.loading ? "Saving" : "Save"}
-                        {this.props.loading && <div className="busyAnimation"></div>}
+                        {this.props.loading && <div className="busyAnimation" />}
                     </a>
 
                     <a href="#"
