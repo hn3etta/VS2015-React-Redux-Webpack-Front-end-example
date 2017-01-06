@@ -1,4 +1,5 @@
 ﻿import {createStore, applyMiddleware, compose} from 'redux';
+import createEncryptor from 'redux-persist-transform-encrypt';
 import thunk from 'redux-thunk';
 import moment from 'moment';
 
@@ -9,7 +10,6 @@ let autoRehydrate = require('redux-persist').autoRehydrate;
 let createTransform = require('redux-persist').createTransform;
 let transitInstance  = require('transit-immutable-js');
 let immutableTransform = require('redux-persist-transform-immutable');
-let createEncryptor = require('redux-persist-transform-encrypt');
 
 import rootReducer from '../reducers';
 // Action creators

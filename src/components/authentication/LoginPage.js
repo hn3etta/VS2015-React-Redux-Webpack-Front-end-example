@@ -257,7 +257,7 @@ class LoginPage extends React.Component {
                             className={this.props.loading ? "login-page__action-btn login-page__action-btn--busy" : "login-page__action-btn"}
                             onClick={this.onSubmit}>
                             {this.getMessage(this.props.loading)}
-                            {this.props.loading && <div className="busyAnimation"></div>}
+                            {this.props.loading && <div className="busyAnimation" />}
                         </a>
 
                         <a href="cancel"
@@ -271,7 +271,7 @@ class LoginPage extends React.Component {
                             {this.props.immtblUsr.get("statusText")}
                         </p>
                         <a href="dismiss" onClick={this.onErrorMsgClose} className="login-page__error-close">
-                            <div className="login-page__error-close-icon"></div>
+                            <div className="login-page__error-close-icon" />
                         </a>
                     </div>
                 </div>

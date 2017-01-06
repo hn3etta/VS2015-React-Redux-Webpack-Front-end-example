@@ -45,7 +45,7 @@ const Header = ({loading, isAuthd}) => {
                         </Link>
                     }
                     {loading &&
-                        <div className={isAuthd ? "busyNavLoader--authd" : "busyNavLoader"}></div>
+                        <div className={isAuthd ? "busyNavLoader--authd" : "busyNavLoader"} />
                     }
                 </nav>
                 <nav className="about-nav">

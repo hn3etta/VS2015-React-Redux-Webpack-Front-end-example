@@ -127,7 +127,7 @@ class SystemErrorContainer extends React.Component {
                         {this.getErrorMessage(this.props.ajaxStatusCntrs)}
                     </p>
                     <a href="dismiss" onClick={this.onErrorMsgClose} className="sys-err-cntr__err-dismiss">
-                        <div className="sys-err-cntr__err-dismiss__icon"></div>
+                        <div className="sys-err-cntr__err-dismiss__icon" />
                     </a>
                 </Sticky>
             </div>

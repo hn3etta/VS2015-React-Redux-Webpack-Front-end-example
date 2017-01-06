@@ -1,5 +1,6 @@
 /*eslint-disable import/default */
 import 'babel-polyfill';
+import 'whatwg-fetch';
 import configureStore from './store/configureStore';
 import { Router, browserHistory } from 'react-router';
 import {GetRoutes} from './routes';
