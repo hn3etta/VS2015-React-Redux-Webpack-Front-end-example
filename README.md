@@ -37,7 +37,7 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 5. Install Node.js Tools for Visual Studio
 6. Install Visual Studio extension WebPack Task Runner
 7. Install Visual Studio extension NPM Task Runner
-8. In Visual Studio, open the VS2015-frontend-example.sln file
+8. Run Visual Studio as Administrator and then open the VS2015-frontend-example.sln file
 9. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
 10. Right click on the VS2015-frontend-example's npm package property and 
