@@ -1,54 +1,54 @@
 ﻿@import '../toolkits/core-imports.scss';
 
 .courses__headings {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .courses__rows {
-    height: 50px;
-    border-bottom: 1px solid #ccc;
+	height: 50px;
+	border-bottom: 1px solid #ccc;
 }
 
 .title-1,
 .col-1 {
-    border-left: 1px solid #ccc;
-    text-align: center;
-    width: 50px;
+	border-left: 1px solid #ccc;
+	text-align: center;
+	width: 50px;
 }
 
 .title-2,
 .col-2 {
-    padding-left: 4px;
+	padding-left: 4px;
 }
 
 .title-4,
 .col-4 {
-    width: 110px;
+	width: 110px;
 }
 
 .title-5,
 .col-5 {
-    width: 70px;
+	width: 70px;
 }
 
 .title-6,
 .col-6 {
-    width: 75px;
+	width: 75px;
 }
 
 .title-7,
 .col-7,
 .title-8,
 .col-8 {
-    width: 50px;
+	width: 50px;
 }
 
 .title-3,
 .title-4,
 .col-3,
 .col-4 {
-    width: 90px;
+	width: 90px;
 }
 
 .title-1,
@@ -66,8 +66,8 @@
 .col-6,
 .col-7,
 .col-8 {
-    font-family: 'Ek Mukta', sans-serif;
-    border-right: 1px solid #ccc;
+	font-family: 'Ek Mukta', sans-serif;
+	border-right: 1px solid #ccc;
 }
 
 .title-1,
@@ -83,8 +83,8 @@
 .col-6,
 .col-7,
 .col-8 {
-    @include justify-content(center);
-    text-align: center;
+	justify-content: center;
+	text-align: center;
 }
 
 
@@ -94,32 +94,32 @@
 .col-4,
 .col-5,
 .col-6 {
-    align-items: center;
+	align-items: center;
 }
 
 .course__edit-open-status,
 .course__edit-closed-status {
-    min-width: 55px;
+	min-width: 55px;
 }
 
 .course__edit-open-status {
-    @include xsmall-button-no-color;
-    background-color: #2FCF22;
-    color: #fff;
+	@include xsmall-button-no-color;
+	background-color: #2FCF22;
+	color: #fff;
 }
 
 .course__edit-closed-status {
-    @include xsmall-button-no-color;
-    background-color: #FF0000;
-    color: #fff;
+	@include xsmall-button-no-color;
+	background-color: #FF0000;
+	color: #fff;
 }
 
 .course__edit,
 .course__delete {
-    padding: 9px;
-    cursor: pointer;
+	padding: 9px;
+	cursor: pointer;
 }
 
 .course__delete {
-    width: 22px;
+	width: 22px;
 }

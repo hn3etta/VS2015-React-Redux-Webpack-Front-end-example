@@ -2,20 +2,20 @@
 
 .side-modal-left,
 .side-modal-right {
-    background-color: $gray-light;
-    opacity: 0;
+	background-color: $gray-light;
+	opacity: 0;
 }
 
 .side-modal-left {
-    padding: 0 10px 10px 38px;
-    transform: translateX(-112%);
+	padding: 0 10px 10px 38px;
+	transform: translateX(-112%);
 }
 
 .side-modal-right {
-    padding: 0 20px 10px;
-    transform: translateX(112%);
+	padding: 0 20px 10px;
+	transform: translateX(112%);
 }
 
 .side-modal--open {
-    transform: translateX(0);
+	transform: translateX(0);
 }

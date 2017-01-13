@@ -1,7 +1,7 @@
 # VS2015-React-Redux-Webpack-Front-end-example
 Visual Studio 2015 React Redux Webpack Front-end example
 
-This example site was mostly built following Cory House's excellent Pluralsight course "[Building Applications with React and Redux in ES6](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)".  
+This example site was mostly built following Cory House's excellent Pluralsight course "[Building Applications with React and Redux in ES6](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)".
 I modified things here and there to fit into Visual Studio 2015 (update 3) and to prove out multiple technologies.
 
 If you are completely new to React then I advise you watch [Ryan Florence's React.js course out on FrontEnd Masters](https://frontendmasters.com/courses/react/).
@@ -17,10 +17,9 @@ If you are new to Redux and Webpack please watch [Cory's course first](https://a
 * [webpack](https://github.com/webpack/webpack)
 * [babel](https://github.com/babel/babel)
 * [express](https://github.com/expressjs/express)
-* [eslint](http://eslint.org)
-* [mocha](https://github.com/mochajs/mocha)
+* [xo](https://github.com/sindresorhus/xo)
+* [jest](http://facebook.github.io/jest)
 * [enzyme](https://github.com/airbnb/enzyme)
-* [expect](https://github.com/mjackson/expect)
 * [node sass](https://github.com/sass/node-sass)
 
 
@@ -29,7 +28,11 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 
 ### Running the Example Locally
 
-1. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example 
+```shell
+npm install -g cross-env jest updtr xo
+```
+
+1. git clone https://github.com/hn3etta/VS2015-React-Redux-Webpack-Front-end-example
     and https://github.com/hn3etta/VS2015-React-Redux-Webpack-Back-end-example to the same location
 2. Make sure .NET Core 1.0.1 is installed from https://www.microsoft.com/net/core#windowsvs2015
 3. Make sure Visual Studio 2015 has update 3 installed (works using Community or Professional)
@@ -40,13 +43,13 @@ I created this example site for developers (like myself) that enjoy coding in Vi
 8. Run Visual Studio as Administrator and then open the VS2015-frontend-example.sln file
 9. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
-10. Right click on the VS2015-frontend-example's npm package property and 
+10. Right click on the VS2015-frontend-example's npm package property and
     select "Install Missing npm Packages"
 11. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
     (https://github.com/sass/node-sass-binaries) into the node-sass vendor directory.
 	Create a directory called "win32-ia32-47" inside of the node-sass vendor directory
 	and drop the binding node "win32-ia32-47_binding.node" in there and rename to "binding.node".
-	within node_modules.  Needed since Node Tools for Visual Studio runs in 32bit mode 
+	within node_modules.  Needed since Node Tools for Visual Studio runs in 32bit mode
 12. Right click on VS2015-backend-example project and select "Set as Startup Project" then
     start without debugging (Cntr+F5)
 13. Open the Visual Studio Task Runner Explorer and under package.json right click on "Start" then click "Run".

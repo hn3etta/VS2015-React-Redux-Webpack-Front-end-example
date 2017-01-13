@@ -1,14 +1,13 @@
-﻿/* Use "require" for non ES6 Modules */
-let Map = require('immutable').Map;
+import {Map} from 'immutable';
 
 export default {
-    user: Map({
-        username: '',
-        isAuthenticated: undefined,
-        token: undefined,
-        authExpiresIn: 0,
-        statusText: '',
-        ajaxStart: undefined,
-        ajaxEnd: undefined
-    })
+	user: Map({
+		username: '',
+		isAuthenticated: undefined,
+		token: undefined,
+		authExpiresIn: 0,
+		statusText: '',
+		ajaxStart: undefined,
+		ajaxEnd: undefined
+	})
 };

@@ -1,158 +1,157 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
 .open-courses-page {
-    padding: 30px 40px;
-    border: solid 3px $color-primary;
-    margin-bottom: 50px;
-    background-color: #fff;
+	padding: 30px 40px;
+	border: solid 3px $color-primary;
+	margin-bottom: 50px;
+	background-color: #fff;
 }
 
 .open-courses-page__title {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    font-size: $font-size-lrg;
-    color: $gray-darker;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: $font-size-lrg;
+	color: $gray-darker;
 }
 
 
 /* Open Class Tile  */
 
 .oc-container {
-    width: 420px;   
-    border: solid 1px #3D3D3D;
-    margin: 10px;
+	width: 420px;
+	border: solid 1px #3D3D3D;
+	margin: 10px;
 }
 
 .oc-item-top-text {
-    min-height: 58px;
-    padding: 6px 4px 4px 4px;
-    background-color: #94B6C4;
+	min-height: 58px;
+	padding: 6px 4px 4px 4px;
+	background-color: #94B6C4;
 }
 
 .oc-item-top-text__title {
-    font-family: 'Mukta', sans-serif;
-    font-size: $font-size-sml;
+	font-family: 'Mukta', sans-serif;
+	font-size: $font-size-sml;
 }
 
 .oc-item-top-text__refresh {
-    padding-right: 8px;
+	padding-right: 8px;
 }
 
 .tile-header {
-    background-color: #036ab7;
+	background-color: #036ab7;
 }
 
 .tile-header__icon {
-    height:70px;
+	height:70px;
 }
 
 .tile-header__text__title {
-    font-family: 'Mukta', sans-serif;
-    font-size: $font-size-sml;
-    color: #fff;
+	font-family: 'Mukta', sans-serif;
+	font-size: $font-size-sml;
+	color: #fff;
 }
 
 .oc-item-main__status {
-    visibility: hidden;
-    z-index: 2;
-    opacity: 0;
+	visibility: hidden;
+	z-index: 2;
+	opacity: 0;
 }
 
 .oc-item-main__status--active {
-    visibility: visible;
-    opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 
 .oc-item-main__status__background {
-    background-color: #6A828C;
-    opacity: .90;
-    z-index: 1;
+	background-color: #6A828C;
+	opacity: .90;
+	z-index: 1;
 }
 
 .oc-item-main__status__message {
-    z-index: 4;
+	z-index: 4;
 }
 
 .updating-message {
-    font-family: 'Mukta', sans-serif;
-    font-size: 1.75vw;
-    color: #fff;
+	font-family: 'Mukta', sans-serif;
+	font-size: 1.75vw;
+	color: #fff;
 }
 
 .oc-item-main__container {
-    z-index: 1;
+	z-index: 1;
 }
 
 /* Open Course Data Displays */
 
 .oc-item-display {
-    padding-left: 10px;
-    padding-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .oc-item-display__icon {
-    width:70px;
+	width:70px;
 }
 
 .oc-item-display__icon__img {
-    width: 100%;
+	width: 100%;
 }
 
 .oc-item-display__value__title,
 .oc-item-display__value__text {
-    font-family: 'Mukta', sans-serif;
-    text-align: center;
+	font-family: 'Mukta', sans-serif;
+	text-align: center;
 }
 
 .oc-item-display__value__title {
-    font-size: 1.0vw;
+	font-size: 1.0vw;
 }
 
 .oc-data-value {
-    font-size: 2.0vw;
+	font-size: 2.0vw;
 }
 
 .oc-data-edit {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 /* Open Course Data Visual Display */
 
 .oc-item-visuals__graphic {
-    height: 125px;
-    width: 125px;
+	height: 125px;
+	width: 125px;
 }
 
 
 /* Status bar with actions */
 
 .oc-item-bottom__status {
-    padding-left: 8px;
+	padding-left: 8px;
 }
 
 .oc-item-bottom__status__label,
 .oc-item-bottom__status__value {
-    font-family: 'Mukta', sans-serif;
-    font-size: $font-size-xxsml;
+	font-family: 'Mukta', sans-serif;
+	font-size: $font-size-xxsml;
 }
 
 .oc-item-bottom__status__label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .oc-item-bottom__upd-intrvl {
-    padding-right: 8px;
+	padding-right: 8px;
 }
 
 .refresh-seconds-add-icon,
 .refresh-seconds-subtract-icon {
-    margin-left: 5px;
-    cursor: pointer;
+	margin-left: 5px;
+	cursor: pointer;
 }
-.refresh-seconds-add-icon
-{
-    margin-right: 5px;
+.refresh-seconds-add-icon {
+	margin-right: 5px;
 }
 
 .animQtrSec {
-    @include transition(all 0.25s ease-in-out)
+	transition: all 0.25s ease-in-out;
 }

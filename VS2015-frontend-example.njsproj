@@ -19,8 +19,19 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="src\containers\Root.js" />
+    <Compile Include="tools\fileTransform.js" />
+    <Compile Include="tools\paths.js" />
+    <Compile Include="tools\polyfills.js" />
+    <Compile Include="tools\start.js" />
+    <Compile Include="tools\styleTransform.js" />
+    <Compile Include="webpack.config.prod.js" />
+    <Content Include=".babelrc" />
+    <Content Include=".editorconfig" />
+    <Content Include=".gitignore" />
     <Content Include="bin\Microsoft.NodejsTools.WebRole.dll" />
     <Content Include="package.json" />
+    <Compile Include="postcss.config.js" />
     <Compile Include="src\actions\openCourseFormActions.js" />
     <Compile Include="src\actions\redirectActions.js" />
     <Compile Include="src\components\common\LinkClick.js" />
@@ -97,10 +108,9 @@
     <Compile Include="src\utilities\objectUtilities.js" />
     <Compile Include="src\utilities\reducerUtilities.js" />
     <Compile Include="tools\build.js" />
-    <Compile Include="tools\buildHtml.js" />
-    <Compile Include="tools\distServer.js" />
     <Compile Include="webpack.config.js" />
     <Content Include="LICENSE.md" />
+    <Content Include="README.md" />
     <Content Include="src\images\add-icon.png" />
     <Content Include="src\images\attendee.png" />
     <Content Include="src\images\attendee_empty.png" />
@@ -117,9 +127,6 @@
     <Content Include="src\images\webpack.png" />
     <Content Include="src\index.html" />
     <Compile Include="src\index.js" />
-    <Compile Include="tools\srcServer.js" />
-    <Compile Include="tools\startMessage.js" />
-    <Compile Include="tools\testSetup.js" />
     <Content Include="src\styles\components\common\component.card-block.scss" />
     <Content Include="src\styles\components\common\component.side-modal.scss" />
     <Content Include="src\styles\components\component.courselist.scss" />
@@ -200,10 +207,32 @@
     <Folder Include="tools" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\bootstrap\" />
+    <Folder Include="typings\globals\es6-promise\" />
+    <Folder Include="typings\globals\immutable\" />
+    <Folder Include="typings\globals\jest\" />
+    <Folder Include="typings\globals\moment\" />
     <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\object-assign\" />
+    <Folder Include="typings\globals\redux-mock-store\" />
+    <Folder Include="typings\globals\redux-thunk\" />
+    <Folder Include="typings\globals\redux\" />
+    <Folder Include="typings\globals\webpack-dev-server\" />
+    <Folder Include="typings\globals\whatwg-fetch\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\es6-promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\immutable\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jest\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\object-assign\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\redux-mock-store\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\redux-thunk\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\redux\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\webpack-dev-server\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\whatwg-fetch\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

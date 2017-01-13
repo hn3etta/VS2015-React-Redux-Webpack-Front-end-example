@@ -7,11 +7,11 @@
  * SETTINGS (variables)
  * Colors.................Brand colors
  * Typography.............Font sizes and line heights
- *                      
- * TOOLS                
+ *
+ * TOOLS
  * Animations.............Helpers for CSS Animations
  * Buttons................Helpers for styling buttons
- *                     
+ *
  */
 
 /**
@@ -28,6 +28,5 @@
  */
 @import "../core/tools.animations.scss";
 @import "../core/tools.buttons.scss";
-@import "../core/tools.flexbox.scss";
 @import "../core/tools.icons.scss";
 @import "../core/tools.media-query.scss";

@@ -1,6 +1,5 @@
-﻿
 export default {
-    id: 0,
-    timeoutHndl: undefined,
-    secsRefresh: 0
+	id: 0,
+	timeoutHndl: undefined,
+	secsRefresh: 0
 };

@@ -1,13 +1,11 @@
-﻿@import '../toolkits/core-imports.scss';
-
-.courses__headings,
+﻿.courses__headings,
 .courses__rows {
-    @include display-flex;
+	display: flex;
 }
 
 .title-2,
 .col-2 {
-    @include flex-grow(1);
+	flex-grow: 1;
 }
 
 .col-1,
@@ -16,5 +14,5 @@
 .col-4,
 .col-5,
 .col-6 {
-    @include display-flex;
+	display: flex;
 }

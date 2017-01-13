@@ -1,34 +1,32 @@
-﻿@import '../../toolkits/core-imports.scss';
-
-.course-page {
-    position: absolute;
-    top: 106px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+﻿.course-page {
+	position: absolute;
+	top: 106px;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .course-page__sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 2;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
 }
 
 .course-page__main-cntr {
-    position: absolute;
-    top: 0;
-    bottom: 2%;
-    left: 12.5%;
-    right: 1%;
+	position: absolute;
+	top: 0;
+	bottom: 2%;
+	left: 12.5%;
+	right: 1%;
 }
 
 .course-page__main {
-    padding: 0 10px 10px 10px;
+	padding: 0 10px 10px 10px;
 }
 
 .busyAnimation {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
 }

@@ -1,42 +1,40 @@
-﻿/* Use "require" for non ES6 Modules */
-let React = require('react');
-let PropTypes = React.PropTypes;
+import React, {Component, PropTypes} from 'react';
 
-class ImageClick extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+class ImageClick extends Component {
+	constructor(props, context) {
+		super(props, context);
 
-        this.imageWasClicked = this.imageWasClicked.bind(this);
-    }
+		this.handleClick = this.handleClick.bind(this);
+	}
 
-    imageWasClicked() {
-        if (this.props.passNumber) {
-            this.props.clickAction(this.props.id, this.props.passNumber);
-            return;
-        }
+	handleClick() {
+		if (this.props.passNumber) {
+			this.props.clickAction(this.props.id, this.props.passNumber);
+			return;
+		}
 
-        this.props.clickAction(this.props.id);
-    }
+		this.props.clickAction(this.props.id);
+	}
 
-    render() {
-        return (
-            <img
-                className={this.props.cssClassName}
-                src={this.props.src}
-                onClick={this.imageWasClicked}
-                title={this.props.title} />
-        );
-    }
+	render() {
+		return (
+			<img
+				className={this.props.cssClassName}
+				src={this.props.src}
+				onClick={this.handleClick}
+				title={this.props.title}
+			/>
+		);
+	}
 }
 
 ImageClick.propTypes = {
-    id: PropTypes.number.isRequired,
-    passNumber: PropTypes.number,
-    src: PropTypes.string.isRequired,
-    cssClassName: PropTypes.string,
-    clickAction: PropTypes.func.isRequired,
-    title: PropTypes.string
+	id: PropTypes.number.isRequired,
+	passNumber: PropTypes.number,
+	src: PropTypes.string.isRequired,
+	cssClassName: PropTypes.string,
+	clickAction: PropTypes.func.isRequired,
+	title: PropTypes.string
 };
-
 
 export default ImageClick;
