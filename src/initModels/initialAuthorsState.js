@@ -1,12 +1,10 @@
-﻿/* Use "require" for non ES6 Modules */
-let Map = require('immutable').Map;
-let List = require('immutable').List;
+import {List, Map} from 'immutable';
 
 export default {
-    authorsCntr: Map({
-        allAuthors: List([]),
-        statusText: '',
-        ajaxStart: undefined,
-        ajaxEnd: undefined
-    })
+	authorsCntr: Map({
+		allAuthors: List([]),
+		statusText: '',
+		ajaxStart: undefined,
+		ajaxEnd: undefined
+	})
 };

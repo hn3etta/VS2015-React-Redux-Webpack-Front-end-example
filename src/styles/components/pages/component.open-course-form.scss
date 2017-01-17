@@ -4,24 +4,24 @@
 .open-course-form__course-name-cntr__label,
 .open-course-form__status-label,
 .open-course-form__attendees-label {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .open-course-form__title {
-    font-size: $font-size-lrg;
-    border-bottom: 1px solid #ccc;
+	font-size: $font-size-lrg;
+	border-bottom: 1px solid #ccc;
 }
 
 .open-course-form {
-    padding-bottom: 15px;
+	padding-bottom: 15px;
 }
 
 .open-course-form__course-name-cntr__label,
 .open-course-form__status-label,
 .open-course-form__attendees-label {
-    display: block;
-    font-size: $font-size-sml;
-    padding-bottom: 5px;
+	display: block;
+	font-size: $font-size-sml;
+	padding-bottom: 5px;
 }
 
 .open-course-form__course-name-cntr__title,
@@ -29,63 +29,61 @@
 .open-course-form__status-closed,
 .open-course-form__attendees-input,
 .open-course-form__attendees-error {
-    font-family: 'Ek Mukta', sans-serif;
-    font-size: $font-size-sml;
+	font-family: 'Ek Mukta', sans-serif;
+	font-size: $font-size-sml;
 }
 
 .open-course-form__status-open,
 .open-course-form__status-closed {
-    @include small-button-no-color;
-    min-width: 88px;
-    text-align: center;
-    border: solid 1px #6b6b6b;
-    color: black;
-    margin-left: 10px;
+	@include small-button-no-color;
+	min-width: 88px;
+	text-align: center;
+	border: solid 1px #6b6b6b;
+	color: black;
+	margin-left: 10px;
 }
 
 .open-course-form__status-open--isTrue {
-    background-color: #00C902;
-    color: #fff;
+	background-color: #00C902;
+	color: #fff;
 }
 
 .open-course-form__status-closed--isTrue {
-    background-color: #FF0000;
-    color: #fff;
+	background-color: #FF0000;
+	color: #fff;
 }
 
 .open-course-form__attendees-input {
-    max-width: 50px;
-    padding-left: 7px;
-    padding-right: 7px;
+	max-width: 50px;
+	padding-left: 7px;
+	padding-right: 7px;
 }
 
 .open-course-form__attendees-error {
-    color: $color-error;
+	color: $color-error;
 }
 
 .open-course-form__save-btn {
-    position: absolute;
-    right: 0;
-    @include small-button;
-    font-size: $font-size-sml;
+	position: absolute;
+	right: 0;
+	@include small-button;
+	font-size: $font-size-sml;
 }
 
 .open-course-form__save-btn:hover {
-    @include button-hover;
+	@include button-hover;
 }
 
 .open-course-form__cancel-btn {
-    @include small-button;
+	@include small-button;
 }
 
 .open-course-form__cancel-btn:hover {
-    @include button-hover;
+	@include button-hover;
 }
 
 @include media-query(lrg-and-up) {
-
-    .open-course-form__button-cntr {
-        width: 31vw;
-    }
-
+	.open-course-form__button-cntr {
+		width: 31vw;
+	}
 }

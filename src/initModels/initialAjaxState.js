@@ -1,4 +1,3 @@
-﻿
 export default {
-    ajaxCallsInProgress: 0
+	ajaxCallsInProgress: 0
 };

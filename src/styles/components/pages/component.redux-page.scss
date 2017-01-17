@@ -1,25 +1,25 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
 .redux-page {
-    padding: 30px 40px;
-    border: solid 3px $color-primary;
-    background-color: #fff;
+	padding: 30px 40px;
+	border: solid 3px $color-primary;
+	background-color: #fff;
 }
 
 .redux-page__title {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    font-size: $font-size-lrg;
-    color: $gray-darker;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #ccc;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: $font-size-lrg;
+	color: $gray-darker;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #ccc;
 }
 
 .redux-page__desc {
-    font-family: Arial, sans-serif;
-    font-size: $font-size-med;
-    padding-top: 20px;
+	font-family: Arial, sans-serif;
+	font-size: $font-size-med;
+	padding-top: 20px;
 }
 
 .redux-page__content-image {
-    width: 100%;
+	width: 100%;
 }

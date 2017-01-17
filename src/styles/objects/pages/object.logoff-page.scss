@@ -1,15 +1,13 @@
-﻿@import '../../toolkits/core-imports.scss';
-
 .logoff-page {
-    @include display-flex;
-    @include justify-content(center);
-    @include align-items(center);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .logoff-page__container {
-    position: relative;
+	position: relative;
 }
 
 .logoff-page__title {
-    margin-top: 0;
+	margin-top: 0;
 }

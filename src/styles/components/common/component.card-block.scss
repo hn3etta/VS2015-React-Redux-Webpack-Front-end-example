@@ -1,19 +1,19 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
 .card-block {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .card-block__title {
-    font-family: 'Mukta', sans-serif;
-    font-size: $font-size-med;
-    color: $gray-darker;
+	font-family: 'Mukta', sans-serif;
+	font-size: $font-size-med;
+	color: $gray-darker;
 }
 
-.card-block__desc, 
+.card-block__desc,
 .card-block__order-list,
 .card-block__unorder-list {
-    font-size: $font-size-sml;
-    color: $gray-dark;
+	font-size: $font-size-sml;
+	color: $gray-dark;
 }

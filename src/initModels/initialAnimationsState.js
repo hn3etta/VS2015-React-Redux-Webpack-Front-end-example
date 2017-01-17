@@ -1,9 +1,7 @@
-﻿/* Use "require" for non ES6 Modules */
-let Map = require('immutable').Map;
-
+import {Map} from 'immutable';
 
 export default {
-    animationSettings: Map({
-        loginDisplay: true
-    })
+	animationSettings: Map({
+		loginDisplay: true
+	})
 };

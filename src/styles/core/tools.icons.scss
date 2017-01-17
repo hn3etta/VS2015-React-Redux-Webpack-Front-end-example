@@ -1,51 +1,48 @@
-﻿@import './tools.animations.scss';
-
-// Icon variants
+﻿// Icon variants
 //
 
 @mixin close-icon-base(){
-    width: 25px;
-    height: 25px;
-    overflow: hidden;
-    &:hover {
-        &::before, &::after {
-            background: #ccc;
-        }
-    }
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	&:hover {
+		&::before, &::after {
+			background: #ccc;
+		}
+	}
 
-    &::before, &::after {
-        content: '';
-        position: absolute;
-        height: 4px;
-        width: 100%;
-        top: 50%;
-        left: 0;
-        margin-top: -6px;
-        border-radius: 5px;
-    }
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		height: 4px;
+		width: 100%;
+		top: 50%;
+		left: 0;
+		margin-top: -6px;
+		border-radius: 5px;
+	}
 
-    &::before {
-        @include transform(rotate(45deg));
-    }
+	&::before {
+		transform: rotate(45deg);
+	}
 
-    &::after {
-        @include transform(rotate(-45deg));
-    } 
+	&::after {
+		transform: rotate(-45deg);
+	}
 }
 
 @mixin close-icon-dark() {
-    @include close-icon-base;
+	@include close-icon-base;
 
-    &::before, &::after {
-        background: #000;
-    }
-
+	&::before, &::after {
+		background: #000;
+	}
 }
 
 @mixin close-icon-light() {
-    @include close-icon-base;
+	@include close-icon-base;
 
-    &::before, &::after {
-        background: #fff;
-    }
+	&::before, &::after {
+		background: #fff;
+	}
 }

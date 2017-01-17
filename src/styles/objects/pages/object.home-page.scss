@@ -1,11 +1,8 @@
-﻿@import '../../toolkits/core-imports.scss';
-
-.home-page {
-    margin: 40px auto 0;
-    max-width: 80%;
+﻿.home-page {
+	margin: 40px auto 0;
+	max-width: 80%;
 }
 
 .home-page__icon-content-cntr {
-    @include display-flex;
+	display: flex;
 }
-

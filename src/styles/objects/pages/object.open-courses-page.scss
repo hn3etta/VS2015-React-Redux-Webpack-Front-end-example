@@ -1,136 +1,135 @@
-﻿@import '../../toolkits/core-imports.scss';
+@import '../../toolkits/core-imports.scss';
 
 .open-courses-page {
-    position: relative;
-    margin: 40px auto 0;
-    max-width: 85%;
+	position: relative;
+	margin: 40px auto 0;
+	max-width: 85%;
 }
 
 .open-courses-page__title {
-    margin-bottom: 20px;
-    @include flex-grow(1);
+	margin-bottom: 20px;
+	flex-grow: 1;
 }
 
 .open-courses-page__container {
-    @include display-flex;
-    @include flex-wrap(wrap);
-    @include justify-content(center);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 /* Open Class Tile  */
 
 .oc-container {
-    
 }
 
 .oc-item-top-text {
-    @include display-flex;
+	display: flex;
 }
 
 .oc-item-top-text__title,
 .oc-item-display__occupied__text {
-    margin-top: 0;
-    margin-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .oc-item-top-text__title {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 
 .oc-item-main {
-    position: relative;
+	position: relative;
 }
 
 .oc-item-main__status,
 .oc-item-main__status__background,
 .oc-item-main__status__message {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .oc-item-main__status__message {
-    @include display-flex;
-    @include align-items(center);
-    @include justify-content(center);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .oc-item-main__container {
-    @include display-flex;
-    padding-top: 10px;
-    margin-bottom: 10px;
+	display: flex;
+	padding-top: 10px;
+	margin-bottom: 10px;
 }
 
 .oc-item-main__left {
-    @include display-flex;
-    @include align-items(center);
-    @include flex-grow(1);
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
 }
 
 /* Data Points */
 
 .oc-item-display__value__title,
 .oc-item-display__value__text {
-    margin: 0;
+	margin: 0;
 }
 
 .oc-item-display__value__container {
-    @include display-flex;
-    @include align-items(center);
-    @include justify-content(center);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .oc-data-edit {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 /* Open Course Data Visual Display */
 
 .oc-item-main__right {
-    position: relative;
+	position: relative;
 }
 
 /* Status bar with actions */
 
 .oc-item-bottom {
-    @include display-flex;
+	display: flex;
 }
 
 .oc-item-bottom__status,
 .oc-item-bottom__upd-intrvl {
-    @include flex-grow(1);
+	flex-grow: 1;
 }
 
 .oc-item-bottom__status {
-    @include display-flex;
-    @include align-items(center);
+	display: flex;
+	align-items: center;
 }
 
 .oc-item-bottom__status__label,
 .oc-item-bottom__status__value {
-    margin: 0;
+	margin: 0;
 }
 
 .oc-item-bottom__status__label {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .oc-item-bottom__upd-intrvl {
-    position: relative;
-    @include display-flex;
-    @include flex-grow(1);
-    @include align-items(center);
-    @include justify-content(flex-end);
+	position: relative;
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .oc-item-bottom__upd-intrvl__text {
-    line-height: $line-height-xsml;
+	line-height: $line-height-xsml;
 }
 
 .oc-item-bottom__upd-intrvl__inputs {
-    @include display-flex;
-    @include justify-content(center);
+	display: flex;
+	justify-content: center;
 }

@@ -1,49 +1,49 @@
 ﻿#app {
-    font: 14px 'Helvetica, Arial, sans-serif';
-    color: #4d4d4d;
-    min-width: 550px;
-    max-width: 850px;
-    margin: 0 auto;
+	font: 14px 'Helvetica, Arial, sans-serif';
+	color: #4d4d4d;
+	min-width: 550px;
+	max-width: 850px;
+	margin: 0 auto;
 }
 
 a.active {
-    color: orange;
+	color: orange;
 }
 
 nav {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 .btn {
-    position: relative;
+	position: relative;
 }
 
 .btn--busy {
-    padding-right: 23px;
+	padding-right: 23px;
 }
 
 .busyAnimation {
-    position: absolute;
-    display: inline-block;
-    top: 1.35vh;
-    margin-left: 0.3vw;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    border: 0.25rem solid#919191;
-    border-top-color: white;
-    -webkit-animation: spin 1s infinite linear;
-            animation: spin 1s infinite linear;
+	position: absolute;
+	display: inline-block;
+	top: 1.35vh;
+	margin-left: 0.3vw;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+	border: 0.25rem solid#919191;
+	border-top-color: white;
+	-webkit-animation: spin 1s infinite linear;
+			animation: spin 1s infinite linear;
 }
 
 /* Animations */
 @keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+	0% {
+	-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+	}
+	100% {
+	-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+	}
 }

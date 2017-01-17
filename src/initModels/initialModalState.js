@@ -1,10 +1,8 @@
-﻿/* Use "require" for non ES6 Modules */
-let Map = require('immutable').Map;
-
+import {Map} from 'immutable';
 
 export default {
-    modalData: Map({
-        open: false,
-        courseId: ''
-    })
+	modalData: Map({
+		open: false,
+		courseId: ''
+	})
 };

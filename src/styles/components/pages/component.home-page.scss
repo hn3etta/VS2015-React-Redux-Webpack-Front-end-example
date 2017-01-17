@@ -1,71 +1,71 @@
 ﻿@import '../../toolkits/core-imports.scss';
 
 .home-page {
-    padding: 30px 40px;
-    border: solid 3px $color-primary;
-    margin-bottom: 50px;
-    background-color: #fff;
+	padding: 30px 40px;
+	border: solid 3px $color-primary;
+	margin-bottom: 50px;
+	background-color: #fff;
 }
 
 .home-page__title,
 .home-page__sub-title,
 .home-page__icon-title {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .home-page__title {
-    font-size: $font-size-lrg;
-    color: $gray-darker;
+	font-size: $font-size-lrg;
+	color: $gray-darker;
 }
 
 .home-page__sub-title {
-    font-size: $font-size-sml;
-    line-height: $line-height-sml;
-    color: $gray-dark;
+	font-size: $font-size-sml;
+	line-height: $line-height-sml;
+	color: $gray-dark;
 }
 
 .home-page__icon-content-cntr {
-    margin-top: 40px;
-    padding-left: 10px;
+	margin-top: 40px;
+	padding-left: 10px;
 }
 
 .home-page__content-cntr {
-    padding-left: 15px;
+	padding-left: 15px;
 }
 
 .home-page__desc,
 .home-page__icon-desc,
 .home-page__btn {
-    font-family: Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 .home-page__icon-title {
-    font-size: $font-size-lrg;
-    margin-top: 0;
-    margin-bottom: 0;
+	font-size: $font-size-lrg;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .home-page__icon-title.react,
 .home-page__icon-title.react-router {
-    color: #61dafb;
+	color: #61dafb;
 }
 
 .home-page__icon-title.redux {
-    color: #764abc;
+	color: #764abc;
 }
 
 .home-page__desc {
-    font-size: $font-size-sml;
-    padding-left: 3px;
-    margin-top: 3px;
-    margin-bottom: 15px;
+	font-size: $font-size-sml;
+	padding-left: 3px;
+	margin-top: 3px;
+	margin-bottom: 15px;
 }
 
 .home-page__btn {
-    @include button;
-    font-size: $font-size-sml;
+	@include button;
+	font-size: $font-size-sml;
 }
 
 .home-page__btn:hover {
-    @include button-hover;
+	@include button-hover;
 }
