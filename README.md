@@ -43,6 +43,7 @@ npm install -g cross-env jest updtr xo
 8. Run Visual Studio as Administrator and then open the VS2015-frontend-example.sln file
 9. Right click on VS2015-frontend-example project and select Properties.
     Make sure the Node.exe path: matches your Node installation directory (example: C:\Node6)
+1. Make sure VS2015 uses the same Node verion you installed https://ryanhayes.net/synchronize-node-js-install-version-with-visual-studio-2015/
 10. Right click on the VS2015-frontend-example's npm package property and
     select "Install Missing npm Packages"
 11. I am running Windows 10 x64 so I needed to copy the "win32-ia32-47" binding node
