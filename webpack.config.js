@@ -56,20 +56,20 @@ module.exports = {
 					}
 				}]
 			},
-			// {
-			// 	test: /\.js$/,
-			// 	enforce: 'pre',
-			// 	include: paths.appSrc,
-			// 	use: [{
-			// 		loader: 'xo-loader',
-			// 		options: {
-			// 			// This loader must ALWAYS return warnings during development. If
-			// 			// errors are emitted, no changes will be pushed to the browser for
-			// 			// testing until the errors have been resolved.
-			// 			emitWarning: true
-			// 		}
-			// 	}]
-			// },
+			{
+				test: /\.js$/,
+				enforce: 'pre',
+				include: paths.appSrc,
+				use: [{
+					loader: 'xo-loader',
+					options: {
+						// This loader must ALWAYS return warnings during development. If
+						// errors are emitted, no changes will be pushed to the browser for
+						// testing until the errors have been resolved.
+						emitWarning: true
+					}
+				}]
+			},
 			{
 				test: /\.js$/,
 				include: paths.appSrc,
