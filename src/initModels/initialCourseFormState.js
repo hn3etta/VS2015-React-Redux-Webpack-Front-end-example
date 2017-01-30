@@ -1,6 +1,6 @@
 export default {
-	id: -1,
-	authorId: -1,
+	id: 0,
+	authorId: 0,
 	title: '',
 	watchHref: 'http://www.pluralsight.com/courses/',
 	length: '',

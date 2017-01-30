@@ -1,6 +1,6 @@
 export default {
-	id: -1,
-	courseId: -1,
+	id: 0,
+	courseId: 0,
 	attendees: 0,
-	maxAttendees: 1
+	maxAttendees: 20
 };

@@ -64,6 +64,9 @@ recursive(paths.appDist, (err, fileNames) => {
 
 	// Start the webpack build
 	build(previousSizeMap);
+
+	// Merge with the public folder
+	copyPublicFolder();
 });
 
 // Print a detailed summary of build files.
@@ -155,5 +158,12 @@ function build(previousSizeMap) {
 			});
 			openBrowser(`http://localhost:${PORT}/`);
 		}
+	});
+}
+
+function copyPublicFolder() {
+	fs.copySync(paths.appPublic, paths.appDist, {
+		dereference: true,
+		filter: file => file !== paths.appHtml
 	});
 }

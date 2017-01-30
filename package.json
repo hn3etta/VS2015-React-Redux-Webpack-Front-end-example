@@ -120,6 +120,9 @@
     ],
     "esnext": true,
     "extends": "xo-react",
+    "ignores": [
+      "public/**"
+    ],
     "rules": {
       "linebreak-style": [
         "error",

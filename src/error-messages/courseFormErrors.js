@@ -5,7 +5,7 @@ export default {
 	},
 	authorId: {
 		errorMessage: 'Please select an author',
-		emptyVal: '-1'
+		emptyVal: '0'
 	},
 	length: {
 		errorMessage: 'Please enter a length value',

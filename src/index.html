@@ -7,6 +7,26 @@
 	</head>
 	<body>
 		<div id="app" class="main-container"></div>
+		<script type="text/javascript" src="signalr-client.js"></script>
+		<script type="text/javascript">
+			console.warn('loaded signalr-client');
+
+			const connection = new signalR.HubConnection(
+				'http://127.0.0.1:1783/testhub',
+				'formatType=json&format=text'
+			);
+
+			connection.on('Send', function (message) {
+				console.info(' >> ' + message);
+			});
+
+			connection.start();
+
+			window.sendChat = function (message) {
+				connection.invoke('Send', message)
+					.catch(err => console.error(err));
+			};
+		</script>
 		<!--
 		This HTML file is a template.
 		If you open it directly in the browser, you will see an empty page.
