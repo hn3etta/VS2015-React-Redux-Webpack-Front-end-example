@@ -80,7 +80,6 @@ class CoursesPage extends Component {
 	}
 
 	handleAddCourseClick(event) {
-		console.log('add course clicked!');
 		event.preventDefault();
 		if (this.props.courseModal.get('open')) {
 			this.props.courseFormActions.closeCourseFormScreen();
@@ -94,7 +93,7 @@ class CoursesPage extends Component {
 	}
 
 	handleDeleteCourse(courseId) {
-		this.props.courseActions.handleDeleteCourse(courseId);
+		this.props.courseActions.deleteCourse(courseId);
 	}
 
 	handleShowOpenCourseFormModal(courseId) {
