@@ -19,7 +19,7 @@
     "test": "jest",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watchAll",
-    "update": "updtr --reporter simple --exclude extract-text-webpack-plugin,react-hot-loader,webpack,webpack-dev-server"
+    "update": "updtr --reporter simple --exclude extract-text-webpack-plugin,react-hot-loader,webpack-dev-server"
   },
   "dependencies": {
     "bootstrap": "3.3.7",
@@ -40,14 +40,14 @@
     "react-router-redux": "4.0.7",
     "react-stickynode": "1.2.1",
     "redux": "3.6.0",
-    "redux-persist": "4.0.1",
+    "redux-persist": "4.1.0",
     "redux-persist-transform-encrypt": "1.0.1",
     "redux-persist-transform-immutable": "4.1.1",
-    "redux-thunk": "2.1.0",
+    "redux-thunk": "2.2.0",
     "whatwg-fetch": "2.0.2"
   },
   "devDependencies": {
-    "autoprefixer": "6.7.1",
+    "autoprefixer": "6.7.2",
     "babel-cli": "6.22.2",
     "babel-core": "6.22.1",
     "babel-jest": "18.0.0",
@@ -75,7 +75,7 @@
     "jest": "18.1.0",
     "nock": "9.0.2",
     "node-inspector": "0.12.8",
-    "node-sass": "4.4.0",
+    "node-sass": "4.5.0",
     "postcss-loader": "1.2.2",
     "pushstate-server": "2.2.0",
     "react-addons-test-utils": "15.4.2",
@@ -83,7 +83,7 @@
     "react-hot-loader": "3.0.0-beta.6",
     "react-immutable-proptypes": "2.1.0",
     "recursive-readdir": "2.1.0",
-    "redux-devtools-extension": "1.0.0",
+    "redux-devtools-extension": "2.0.0",
     "redux-immutable-state-invariant": "1.2.4",
     "redux-mock-store": "1.2.2",
     "sass-loader": "4.1.1",
@@ -91,7 +91,7 @@
     "style-loader": "0.13.1",
     "updtr": "0.2.3",
     "url-loader": "0.5.7",
-    "webpack": "2.2.0",
+    "webpack": "2.2.1",
     "webpack-dev-server": "2.2.0",
     "webpack-manifest-plugin": "1.1.0",
     "xo": "0.17.1",
